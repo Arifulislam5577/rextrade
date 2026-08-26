@@ -3,7 +3,7 @@
 import Lenis from 'lenis'
 import { useEffect } from 'react'
 
-const ANCHOR_OFFSET = -80
+const ANCHOR_OFFSET = -120
 
 export function SmoothScroll() {
   useEffect(() => {

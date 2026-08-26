@@ -1,4 +1,14 @@
+import type { StaticImageData } from 'next/image'
+
 import type { IconName } from '@/lib/icons'
+
+import airpods from '@/public/images/airpods.jpg'
+import fan from '@/public/images/fan.jpg'
+import pens from '@/public/images/pens.jpg'
+import powerBank from '@/public/images/power-bank.jpg'
+import watch from '@/public/images/watch.jpg'
+import waterBottle from '@/public/images/water-bottle.jpg'
+import wooden from '@/public/images/wooden.jpg'
 
 type LinkTarget = {
   readonly label: string
@@ -18,6 +28,8 @@ type NumberedStep = {
   readonly body: string
 }
 
+export type HeroImageRatio = '4/5' | '7/5' | '6/5' | '3/2' | '3/4' | '2/3' | '9/10' | '16/9'
+
 export type HomeContent = {
   readonly hero: {
     readonly badge: string
@@ -27,6 +39,14 @@ export type HomeContent = {
     readonly primaryCta: LinkTarget
     readonly secondaryCta: LinkTarget
     readonly footnote: string
+    readonly gallery: readonly {
+      readonly name: string
+      readonly items: readonly {
+        readonly image: StaticImageData
+        readonly alt: string
+        readonly ratio: HeroImageRatio
+      }[]
+    }[]
   }
   readonly trustStrip: {
     readonly eyebrow: string
@@ -102,7 +122,7 @@ export type HomeContent = {
 
 export const homeContent = {
   hero: {
-    badge: 'B2B importer & supplier · Dhaka',
+    badge: 'importer & supplier',
     headingLead: 'All kind of gift items, sourced to your',
     headingAccent: 'specification',
     lead: 'We import and supply corporate, promotional and institutional products — gadgets, stationery, leather, wooden, kitchen and houseware goods — customised to your requirement, quantity and budget.',
@@ -110,6 +130,34 @@ export const homeContent = {
     secondaryCta: { label: 'Browse products', href: '#products' },
     footnote:
       'Serving pharmaceuticals, hospitals, banks, NGOs, government bodies and corporates since 2022.',
+    gallery: [
+      {
+        name: 'left',
+        items: [
+          { image: watch, alt: 'Branded smart watch', ratio: '4/5' },
+          { image: wooden, alt: 'Executive desk organiser', ratio: '7/5' },
+        ],
+      },
+      {
+        name: 'left-inner',
+        items: [{ image: fan, alt: 'Rechargeable hand fan', ratio: '2/3' }],
+      },
+      {
+        name: 'centre',
+        items: [{ image: pens, alt: 'Metal pen set', ratio: '3/4' }],
+      },
+      {
+        name: 'right-inner',
+        items: [{ image: waterBottle, alt: 'Vacuum flask', ratio: '2/3' }],
+      },
+      {
+        name: 'right',
+        items: [
+          { image: powerBank, alt: 'Branded power bank', ratio: '9/10' },
+          { image: airpods, alt: 'Branded wireless earbuds', ratio: '16/9' },
+        ],
+      },
+    ],
   },
   trustStrip: {
     eyebrow: 'How we work',

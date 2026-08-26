@@ -36,7 +36,7 @@
   }
 
   section[id] {
-    scroll-margin-top: --spacing(20);
+    scroll-margin-top: --spacing(30);
   }
 
   ::selection {
