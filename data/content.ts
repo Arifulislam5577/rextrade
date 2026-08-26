@@ -2,6 +2,8 @@ import type { StaticImageData } from 'next/image'
 
 import type { IconName } from '@/lib/icons'
 
+import aboutPrimary from '@/public/images/about-us-1.png'
+import aboutSecondary from '@/public/images/about-us-2.png'
 import airpods from '@/public/images/airpods.jpg'
 import fan from '@/public/images/fan.jpg'
 import pens from '@/public/images/pens.jpg'
@@ -59,6 +61,7 @@ export type HomeContent = {
     readonly heading: string
     readonly paragraphs: readonly string[]
     readonly stats: readonly { readonly value: string; readonly label: string }[]
+    readonly images: readonly { readonly image: StaticImageData; readonly alt: string }[]
     readonly cta: LinkTarget
   }
   readonly productCategories: {
@@ -166,27 +169,27 @@ export const homeContent = {
     cards: [
       {
         icon: 'badge-check',
-        title: 'Registered, and importing directly',
-        body: 'Registered with Dhaka North City Corporation and trading since 2022. We import directly rather than buying through layers, which is what keeps bulk pricing workable without cutting the specification.',
+        title: 'Registered and importing directly',
+        body: 'Registered with Dhaka North City Corporation and importing directly since 2022 — no middle layers.',
         cta: { label: 'About the company', href: '#about' },
       },
       {
         icon: 'palette',
         title: 'Customised to your specification',
-        body: 'Logo printing, laser engraving, embossing, custom packaging and full gift-set assembly — arranged in-house against your artwork and brand guidelines.',
+        body: 'Logo printing, engraving, embossing and packaging — arranged in-house to your brand guidelines.',
         cta: { label: 'See the process', href: '#process' },
       },
       {
         icon: 'delivery',
         title: 'Bulk capacity, delivered nationwide',
-        body: 'Built for institutional volume rather than one-off retail, on a delivery schedule set against your event or programme date, to one address or several.',
+        body: 'Institutional volume on a schedule set by your event date, to one address or many.',
         cta: { label: 'Request a quote', href: '#contact' },
       },
     ],
   },
   whoWeAre: {
     eyebrow: 'Who we are',
-    heading: 'Procurement made simpler for corporate and institutional buyers.',
+    heading: 'Simpler for corporate and institutional buyers.',
     paragraphs: [
       'ReXTrade International is a B2B importer and supplier of corporate, promotional and institutional products. Instead of selling from a fixed catalogue, we source against your specification — the right product, in the right quantity, within your budget.',
       'Our clients are pharmaceutical companies, hospitals, NGOs, government and non-government organisations, banks, cement companies and corporate houses across Bangladesh.',
@@ -195,6 +198,10 @@ export const homeContent = {
       { value: '09', label: 'Product categories' },
       { value: '07', label: 'Industries served' },
       { value: '2022', label: 'Trading since' },
+    ],
+    images: [
+      { image: aboutPrimary, alt: 'Colleagues reviewing an order together around a meeting table' },
+      { image: aboutSecondary, alt: 'A team working through requirements at a shared desk' },
     ],
     cta: { label: 'More about the company', href: '#why-choose-us' },
   },

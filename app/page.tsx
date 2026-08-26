@@ -1,4 +1,3 @@
-import { CustomizationBand } from '@/components/home/customization-band'
 import { FeaturedProducts } from '@/components/home/featured-products'
 import { FinalCta } from '@/components/home/final-cta'
 import { GiftSolutions } from '@/components/home/gift-solutions'
@@ -18,7 +17,6 @@ export default function HomePage() {
       <WhoWeAre />
       <ProductCategories />
       <FeaturedProducts />
-      <CustomizationBand />
       <GiftSolutions />
       <SupplyProcess />
       <IndustriesServed />

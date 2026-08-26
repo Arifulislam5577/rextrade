@@ -29,13 +29,10 @@ export function Hero() {
       className="relative flex min-h-screen overflow-hidden bg-linear-to-b from-sky-50 to-white"
     >
       <div className="main-container relative pt-32 pb-8 text-center lg:pt-48">
-        <p className="eyebrow inline-flex items-center rounded-full border border-sky-500 bg-transparent px-4 py-2 text-sky-500">
-          {hero.badge}
-        </p>
-
+        <p className="eyebrow text-ink/50 inline-flex items-center">{hero.badge}</p>
         <h1
           id="hero-heading"
-          className="font-display text-ink mx-auto mt-6 max-w-4xl text-4xl font-extrabold tracking-tight text-balance sm:text-5xl md:mt-8 lg:text-6xl"
+          className="font-display text-ink mx-auto mt-2.5 max-w-4xl text-4xl font-extrabold tracking-tight text-balance sm:text-5xl md:mt-5 lg:text-6xl"
         >
           {hero.headingLead} <span className="text-sky-500">{hero.headingAccent}</span>
         </h1>
