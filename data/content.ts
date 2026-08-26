@@ -5,11 +5,20 @@ import type { IconName } from '@/lib/icons'
 import aboutPrimary from '@/public/images/about-us-1.png'
 import aboutSecondary from '@/public/images/about-us-2.png'
 import airpods from '@/public/images/airpods.jpg'
+import customizeGift from '@/public/images/customize-gift.jpg'
+import fabrics from '@/public/images/fabrics.jpg'
 import fan from '@/public/images/fan.jpg'
+import gadgets from '@/public/images/gadgets.jpg'
+import houseware from '@/public/images/houseware.jpg'
+import kitchen from '@/public/images/kitchen.jpg'
+import leather from '@/public/images/lether.jpg'
+import office from '@/public/images/office.jpg'
 import pens from '@/public/images/pens.jpg'
 import powerBank from '@/public/images/power-bank.jpg'
+import promotional from '@/public/images/promotional.jpg'
 import watch from '@/public/images/watch.jpg'
 import waterBottle from '@/public/images/water-bottle.jpg'
+import woodenProduct from '@/public/images/wooden-product.jpg'
 import wooden from '@/public/images/wooden.jpg'
 
 type LinkTarget = {
@@ -68,7 +77,7 @@ export type HomeContent = {
     readonly eyebrow: string
     readonly heading: string
     readonly lead: string
-    readonly categories: readonly IconCard[]
+    readonly categories: readonly (IconCard & { readonly image: StaticImageData })[]
   }
   readonly featured: {
     readonly eyebrow: string
@@ -213,46 +222,55 @@ export const homeContent = {
       {
         icon: 'smartphone',
         title: 'Gadgets & Electronics',
+        image: gadgets,
         body: 'Power banks, earbuds, smart watches, chargers and desk tech.',
       },
       {
         icon: 'stationery',
         title: 'Stationery & Office',
+        image: office,
         body: 'Pens, diaries, notebooks, desk clocks and office essentials.',
       },
       {
         icon: 'shirt',
         title: 'Fabrics & Textile',
+        image: fabrics,
         body: 'Apparel, uniforms, tote bags and printed textile products.',
       },
       {
         icon: 'wallet',
         title: 'Leather Products',
+        image: leather,
         body: 'Wallets, cardholders, folders, belts and executive leather sets.',
       },
       {
         icon: 'wood',
         title: 'Wooden Products',
+        image: woodenProduct,
         body: 'Crests, plaques, desk organisers, wall racks and décor pieces.',
       },
       {
         icon: 'cooking-pot',
         title: 'Kitchen Items',
+        image: kitchen,
         body: 'Cookers, flasks, mugs, tumblers and small kitchen appliances.',
       },
       {
         icon: 'house',
         title: 'Houseware Products',
+        image: houseware,
         body: 'Storage, baskets, home textiles and everyday household goods.',
       },
       {
         icon: 'megaphone',
         title: 'Promotional Items',
+        image: promotional,
         body: 'Logo mugs, pens, keyrings, caps and campaign giveaways.',
       },
       {
         icon: 'gift',
         title: 'Customized Gift Sets',
+        image: customizeGift,
         body: 'Boxed executive sets built to your brand and budget.',
       },
     ],

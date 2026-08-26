@@ -54,14 +54,10 @@ export function WhoWeAre() {
           </div>
 
           <div>
-            <p className="eyebrow border-hairline inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sky-600">
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-sky-500" />
-              {whoWeAre.eyebrow}
-            </p>
-
+            <p className="eyebrow text-ink/50">{whoWeAre.eyebrow}</p>
             <h2
               id="about-heading"
-              className="font-display text-ink mt-6 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
+              className="font-display text-ink mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
             >
               Simpler for <span className="text-sky-500">corporate</span> and{' '}
               <span className="text-sky-500">institutional</span> buyers.
