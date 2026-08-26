@@ -1,0 +1,401 @@
+import type { IconName } from '@/lib/icons'
+
+type LinkTarget = {
+  readonly label: string
+  readonly href: string
+}
+
+type IconCard = {
+  readonly icon: IconName
+  readonly title: string
+  readonly body: string
+}
+
+type NumberedStep = {
+  readonly number: string
+  readonly icon: IconName
+  readonly title: string
+  readonly body: string
+}
+
+export type HomeContent = {
+  readonly hero: {
+    readonly badge: string
+    readonly headingLead: string
+    readonly headingAccent: string
+    readonly lead: string
+    readonly primaryCta: LinkTarget
+    readonly secondaryCta: LinkTarget
+    readonly footnote: string
+  }
+  readonly trustStrip: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly cards: readonly (IconCard & { readonly cta: LinkTarget })[]
+  }
+  readonly whoWeAre: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly paragraphs: readonly string[]
+    readonly stats: readonly { readonly value: string; readonly label: string }[]
+    readonly cta: LinkTarget
+  }
+  readonly productCategories: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly categories: readonly IconCard[]
+  }
+  readonly featured: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly note: string
+    readonly products: readonly { readonly icon: IconName; readonly name: string }[]
+  }
+  readonly customization: {
+    readonly steps: readonly {
+      readonly number: string
+      readonly title: string
+      readonly note: string
+    }[]
+    readonly closing: string
+  }
+  readonly giftSolutions: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly solutions: readonly IconCard[]
+  }
+  readonly supplyProcess: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly steps: readonly NumberedStep[]
+    readonly chain: readonly string[]
+  }
+  readonly industries: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly sectors: readonly IconCard[]
+    readonly invitation: {
+      readonly title: string
+      readonly body: string
+      readonly cta: LinkTarget
+    }
+  }
+  readonly whyChooseUs: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly points: readonly IconCard[]
+  }
+  readonly finalCta: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly primaryCtaLabel: string
+    readonly secondaryCtaLabel: string
+  }
+}
+
+export const homeContent = {
+  hero: {
+    badge: 'B2B importer & supplier · Dhaka',
+    headingLead: 'All kind of gift items, sourced to your',
+    headingAccent: 'specification',
+    lead: 'We import and supply corporate, promotional and institutional products — gadgets, stationery, leather, wooden, kitchen and houseware goods — customised to your requirement, quantity and budget.',
+    primaryCta: { label: 'Request a quote', href: '#contact' },
+    secondaryCta: { label: 'Browse products', href: '#products' },
+    footnote:
+      'Serving pharmaceuticals, hospitals, banks, NGOs, government bodies and corporates since 2022.',
+  },
+  trustStrip: {
+    eyebrow: 'How we work',
+    heading: 'Three things decide how a supply order goes.',
+    lead: 'Where the goods come from, what we can do to them, and whether they arrive on the date you need. Everything else is detail — and these three are the ones worth checking before you place an order with anybody.',
+    cards: [
+      {
+        icon: 'badge-check',
+        title: 'Registered, and importing directly',
+        body: 'Registered with Dhaka North City Corporation and trading since 2022. We import directly rather than buying through layers, which is what keeps bulk pricing workable without cutting the specification.',
+        cta: { label: 'About the company', href: '#about' },
+      },
+      {
+        icon: 'palette',
+        title: 'Customised to your specification',
+        body: 'Logo printing, laser engraving, embossing, custom packaging and full gift-set assembly — arranged in-house against your artwork and brand guidelines.',
+        cta: { label: 'See the process', href: '#process' },
+      },
+      {
+        icon: 'delivery',
+        title: 'Bulk capacity, delivered nationwide',
+        body: 'Built for institutional volume rather than one-off retail, on a delivery schedule set against your event or programme date, to one address or several.',
+        cta: { label: 'Request a quote', href: '#contact' },
+      },
+    ],
+  },
+  whoWeAre: {
+    eyebrow: 'Who we are',
+    heading: 'Procurement made simpler for corporate and institutional buyers.',
+    paragraphs: [
+      'ReXTrade International is a B2B importer and supplier of corporate, promotional and institutional products. Instead of selling from a fixed catalogue, we source against your specification — the right product, in the right quantity, within your budget.',
+      'Our clients are pharmaceutical companies, hospitals, NGOs, government and non-government organisations, banks, cement companies and corporate houses across Bangladesh.',
+    ],
+    stats: [
+      { value: '09', label: 'Product categories' },
+      { value: '07', label: 'Industries served' },
+      { value: '2022', label: 'Trading since' },
+    ],
+    cta: { label: 'More about the company', href: '#why-choose-us' },
+  },
+  productCategories: {
+    eyebrow: 'What we supply',
+    heading: 'Nine categories, one supplier.',
+    lead: 'Everything below can be branded, boxed and delivered as a single order — so you are not managing five vendors for one campaign.',
+    categories: [
+      {
+        icon: 'smartphone',
+        title: 'Gadgets & Electronics',
+        body: 'Power banks, earbuds, smart watches, chargers and desk tech.',
+      },
+      {
+        icon: 'stationery',
+        title: 'Stationery & Office',
+        body: 'Pens, diaries, notebooks, desk clocks and office essentials.',
+      },
+      {
+        icon: 'shirt',
+        title: 'Fabrics & Textile',
+        body: 'Apparel, uniforms, tote bags and printed textile products.',
+      },
+      {
+        icon: 'wallet',
+        title: 'Leather Products',
+        body: 'Wallets, cardholders, folders, belts and executive leather sets.',
+      },
+      {
+        icon: 'wood',
+        title: 'Wooden Products',
+        body: 'Crests, plaques, desk organisers, wall racks and décor pieces.',
+      },
+      {
+        icon: 'cooking-pot',
+        title: 'Kitchen Items',
+        body: 'Cookers, flasks, mugs, tumblers and small kitchen appliances.',
+      },
+      {
+        icon: 'house',
+        title: 'Houseware Products',
+        body: 'Storage, baskets, home textiles and everyday household goods.',
+      },
+      {
+        icon: 'megaphone',
+        title: 'Promotional Items',
+        body: 'Logo mugs, pens, keyrings, caps and campaign giveaways.',
+      },
+      {
+        icon: 'gift',
+        title: 'Customized Gift Sets',
+        body: 'Boxed executive sets built to your brand and budget.',
+      },
+    ],
+  },
+  featured: {
+    eyebrow: 'Recently supplied',
+    heading: 'A sample of what moves most.',
+    note: 'Every item shown can be branded and packaged to your specification.',
+    products: [
+      { icon: 'desk-set', name: 'Executive desk set' },
+      { icon: 'flask', name: 'Vacuum flask' },
+      { icon: 'pen-set', name: 'Metal pen set' },
+      { icon: 'watch', name: 'Smart watch' },
+      { icon: 'earbuds', name: 'Wireless earbuds' },
+      { icon: 'speaker', name: 'Bluetooth speaker' },
+      { icon: 'power-bank', name: 'Power bank' },
+      { icon: 'fan', name: 'Rechargeable hand fan' },
+    ],
+  },
+  customization: {
+    steps: [
+      { number: '01', title: 'Your requirement', note: 'Product, quantity, budget, deadline' },
+      { number: '02', title: 'Our sourcing', note: 'Suppliers, samples, branding, checks' },
+      { number: '03', title: 'Your customised product', note: 'Boxed, branded, delivered' },
+    ],
+    closing:
+      'Logo printing, laser engraving, embossing, custom packaging and full gift-set assembly — arranged in-house against your artwork and brand guidelines.',
+  },
+  giftSolutions: {
+    eyebrow: 'Corporate gift solutions',
+    heading: 'Built around the reason you are buying.',
+    lead: 'A conference giveaway, an executive gift and a tender supply are three different jobs. We scope each one separately.',
+    solutions: [
+      {
+        icon: 'gift',
+        title: 'Corporate & executive gifts',
+        body: 'Considered gift items for clients, employees, business partners and management.',
+      },
+      {
+        icon: 'megaphone',
+        title: 'Promotional & branding items',
+        body: 'Products designed to carry your brand through a campaign, launch or trade event.',
+      },
+      {
+        icon: 'palette',
+        title: 'Branded & personalised products',
+        body: 'Customised with your organisation name, logo, colours, packaging or artwork.',
+      },
+      {
+        icon: 'briefcase',
+        title: 'Office & lifestyle items',
+        body: 'Practical gadgets, stationery, leather, wooden, kitchen and houseware goods.',
+      },
+      {
+        icon: 'calendar',
+        title: 'Event & institutional gifts',
+        body: 'For seminars, conferences, meetings, campaigns, annual programmes and AGMs.',
+      },
+      {
+        icon: 'boxes',
+        title: 'Bulk & tender supply',
+        body: 'Large-volume institutional orders with documentation and scheduled delivery.',
+      },
+    ],
+  },
+  supplyProcess: {
+    eyebrow: 'Our supply process',
+    heading: 'Six steps, and you know where the order stands at each one.',
+    lead: 'Most sourcing problems come from a vague brief and a silent middle stage. This is how we avoid both.',
+    steps: [
+      {
+        number: '01',
+        icon: 'clipboard',
+        title: 'Requirement & product selection',
+        body: 'We take your brief — product type, quantity, budget, deadline — and shortlist what actually fits.',
+      },
+      {
+        number: '02',
+        icon: 'search',
+        title: 'Sourcing & procurement',
+        body: 'Products are sourced from vetted suppliers against the specification you approve.',
+      },
+      {
+        number: '03',
+        icon: 'palette',
+        title: 'Product customization',
+        body: 'Logo printing, engraving, embossing, custom packaging and gift-set assembly.',
+      },
+      {
+        number: '04',
+        icon: 'shield',
+        title: 'Quality & order verification',
+        body: 'Specification, quantity and finish are checked against the order before anything ships.',
+      },
+      {
+        number: '05',
+        icon: 'ship',
+        title: 'Import & supply management',
+        body: 'We handle procurement and import-related processes for bulk and institutional orders.',
+      },
+      {
+        number: '06',
+        icon: 'delivery',
+        title: 'Delivery & client support',
+        body: 'Organised delivery on schedule, with a single point of contact throughout.',
+      },
+    ],
+    chain: ['Requirement', 'Sourcing', 'Customization', 'Verification', 'Import', 'Delivery'],
+  },
+  industries: {
+    eyebrow: 'Industries served',
+    heading: 'Who we supply.',
+    lead: 'Seven sectors that buy in volume, each with a procurement process we already know how to work inside.',
+    sectors: [
+      {
+        icon: 'pill',
+        title: 'Pharmaceutical companies',
+        body: 'Corporate gifts, promotional products, stationery, gadgets and customised items.',
+      },
+      {
+        icon: 'stethoscope',
+        title: 'Hospitals & healthcare',
+        body: 'Institutional supplies, promotional items, houseware, gadgets and custom products.',
+      },
+      {
+        icon: 'landmark',
+        title: 'Government organisations',
+        body: 'Institutional procurement, official gifts, promotional items and customised supplies.',
+      },
+      {
+        icon: 'handshake',
+        title: 'NGOs & development',
+        body: 'Corporate and organisational products tailored to programme requirements.',
+      },
+      {
+        icon: 'banknote',
+        title: 'Banks & financial institutions',
+        body: 'Corporate gifts, promotional merchandise, office items and branded products.',
+      },
+      {
+        icon: 'hard-hat',
+        title: 'Cement & construction',
+        body: 'Corporate gifts, promotional items, safety merchandise and institutional supplies.',
+      },
+      {
+        icon: 'building',
+        title: 'Corporate & business',
+        body: 'Customised products and bulk supply for employees, clients, events and campaigns.',
+      },
+    ],
+    invitation: {
+      title: 'Not on this list?',
+      body: 'We supply any organisation buying in volume. Send the requirement and we will tell you honestly whether we are the right fit for it.',
+      cta: { label: 'Send your requirement', href: '#contact' },
+    },
+  },
+  whyChooseUs: {
+    eyebrow: 'Why choose us',
+    heading: 'What you actually get by working with us.',
+    lead: 'No claims we cannot back on an order. These are the six things clients come back for.',
+    points: [
+      {
+        icon: 'boxes',
+        title: 'Wide product range',
+        body: 'Nine categories under one supplier — fewer vendors to manage per order.',
+      },
+      {
+        icon: 'sliders',
+        title: 'Customized sourcing',
+        body: 'We source to your specification instead of pushing a fixed catalogue.',
+      },
+      {
+        icon: 'pricing',
+        title: 'Competitive pricing',
+        body: 'Direct import and supplier relationships keep bulk pricing workable.',
+      },
+      {
+        icon: 'warehouse',
+        title: 'Bulk & institutional capacity',
+        body: 'Built for large-volume orders, not one-off retail purchases.',
+      },
+      {
+        icon: 'shield',
+        title: 'Quality-focused procurement',
+        body: 'Specification and finish verified before the order leaves us.',
+      },
+      {
+        icon: 'delivery',
+        title: 'Timely, organised delivery',
+        body: 'Scheduled against your event or programme date, nationwide.',
+      },
+    ],
+  },
+  finalCta: {
+    eyebrow: 'Get in touch',
+    heading: 'Send us your requirement.',
+    lead: 'Tell us the product, quantity, branding and the date you need it by. We will come back with a quotation and a realistic schedule.',
+    primaryCtaLabel: 'Request a quote',
+    secondaryCtaLabel: 'Message on WhatsApp',
+  },
+} as const satisfies HomeContent
