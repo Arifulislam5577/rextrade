@@ -6,18 +6,17 @@ export function SupplyProcess() {
   const { supplyProcess } = homeContent
 
   return (
-    <section id="process" aria-labelledby="process-heading" className="bg-mist py-20 lg:py-28">
+    <section
+      id="process"
+      aria-labelledby="process-heading"
+      className="bg-linear-to-b from-sky-50 to-white py-20 lg:py-28"
+    >
       <div className="main-container">
-        <p className="eyebrow text-sky-600">{supplyProcess.eyebrow}</p>
-        <h2
-          id="process-heading"
-          className="font-display text-ink mt-4 max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl"
-        >
+        <p className="eyebrow text-ink/50">{supplyProcess.eyebrow}</p>
+        <h2 id="process-heading" className="section-heading mt-4 max-w-3xl">
           {supplyProcess.heading}
         </h2>
-        <p className="text-slate-body mt-5 max-w-3xl text-base leading-relaxed text-pretty">
-          {supplyProcess.lead}
-        </p>
+        <p className="section-lead mt-5 max-w-3xl">{supplyProcess.lead}</p>
 
         <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {supplyProcess.steps.map((step) => {

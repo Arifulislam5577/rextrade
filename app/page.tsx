@@ -1,3 +1,4 @@
+import { ContactSection } from '@/components/home/contact-section'
 import { FeaturedProducts } from '@/components/home/featured-products'
 import { FinalCta } from '@/components/home/final-cta'
 import { GiftSolutions } from '@/components/home/gift-solutions'
@@ -21,6 +22,7 @@ export default function HomePage() {
       <SupplyProcess />
       <IndustriesServed />
       <WhyChooseUs />
+      <ContactSection />
       <FinalCta />
     </main>
   )

@@ -14,10 +14,7 @@ export function TrustStrip() {
       <div className="main-container">
         <div className="text-center">
           <p className="eyebrow text-ink/50">{trustStrip.eyebrow}</p>
-          <h2
-            id="how-we-work-heading"
-            className="font-display text-ink mx-auto mt-4 max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
-          >
+          <h2 id="how-we-work-heading" className="section-heading mx-auto mt-4 max-w-3xl">
             Three things decide how a supply <span className="text-sky-500">order</span> goes.
           </h2>
         </div>

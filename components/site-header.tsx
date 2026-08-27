@@ -21,7 +21,7 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-4 z-40 lg:top-6">
       <div className="main-container">
-        <div className="relative flex h-15 items-center justify-between gap-6 rounded-full bg-white px-3 lg:h-17 lg:px-4">
+        <div className="border-hairline/50 relative flex h-15 items-center justify-between gap-6 rounded-full border bg-white px-3 lg:h-17 lg:px-4">
           <Link href="/" className="flex items-center gap-3" onClick={handleMenuClose}>
             <span
               aria-hidden="true"

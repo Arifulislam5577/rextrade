@@ -11,19 +11,14 @@ export function IndustriesServed() {
     <section
       id="industries"
       aria-labelledby="industries-heading"
-      className="bg-white py-20 lg:py-28"
+      className="bg-linear-to-b from-white to-sky-50 py-20 lg:py-28"
     >
       <div className="main-container">
-        <p className="eyebrow text-sky-600">{industries.eyebrow}</p>
-        <h2
-          id="industries-heading"
-          className="font-display text-ink mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
-        >
+        <p className="eyebrow text-ink/50">{industries.eyebrow}</p>
+        <h2 id="industries-heading" className="section-heading mt-4">
           {industries.heading}
         </h2>
-        <p className="text-slate-body mt-5 max-w-3xl text-base leading-relaxed text-pretty">
-          {industries.lead}
-        </p>
+        <p className="section-lead mt-5 max-w-3xl">{industries.lead}</p>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {industries.sectors.map((sector) => {

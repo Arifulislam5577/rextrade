@@ -52,6 +52,46 @@
   @apply tracking-eyebrow font-mono text-xs font-medium uppercase;
 }
 
+@utility section-heading {
+  @apply font-display text-ink text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl;
+}
+
+@utility section-lead {
+  @apply text-slate-body text-base leading-relaxed text-pretty;
+}
+
+@utility field-label {
+  @apply text-ink block text-sm font-semibold;
+}
+
+@utility field-optional {
+  @apply text-slate-body/70 font-normal;
+}
+
+@utility field-control {
+  @apply border-hairline text-ink placeholder:text-slate-body/50 block w-full rounded-2xl border bg-white px-4 py-3.5 text-sm shadow-xs transition duration-200 outline-none hover:border-sky-300 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/12;
+
+  &[data-invalid] {
+    @apply border-alert-500 ring-alert-500/12 ring-4;
+  }
+
+  &[data-invalid]:hover {
+    @apply border-alert-500;
+  }
+
+  &[data-invalid]:focus {
+    @apply border-alert-500 ring-alert-500/25;
+  }
+}
+
+@utility field-select {
+  @apply appearance-none pr-11;
+}
+
+@utility field-error {
+  @apply text-alert-500 mt-2 text-xs font-medium;
+}
+
 @utility button-primary {
   @apply inline-flex items-center justify-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500;
 }

@@ -9,19 +9,14 @@ export function WhyChooseUs() {
     <section
       id="why-choose-us"
       aria-labelledby="why-choose-us-heading"
-      className="bg-mist py-20 lg:py-28"
+      className="bg-linear-to-b from-sky-50 to-white py-20 lg:py-28"
     >
       <div className="main-container">
-        <p className="eyebrow text-sky-600">{whyChooseUs.eyebrow}</p>
-        <h2
-          id="why-choose-us-heading"
-          className="font-display text-ink mt-4 max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl"
-        >
+        <p className="eyebrow text-ink/50">{whyChooseUs.eyebrow}</p>
+        <h2 id="why-choose-us-heading" className="section-heading mt-4 max-w-3xl">
           {whyChooseUs.heading}
         </h2>
-        <p className="text-slate-body mt-5 max-w-3xl text-base leading-relaxed text-pretty">
-          {whyChooseUs.lead}
-        </p>
+        <p className="section-lead mt-5 max-w-3xl">{whyChooseUs.lead}</p>
 
         <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {whyChooseUs.points.map((point) => {

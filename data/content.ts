@@ -6,6 +6,7 @@ import aboutPrimary from '@/public/images/about-us-1.png'
 import aboutSecondary from '@/public/images/about-us-2.png'
 import airpods from '@/public/images/airpods.jpg'
 import customizeGift from '@/public/images/customize-gift.jpg'
+import desk from '@/public/images/desk.jpg'
 import fabrics from '@/public/images/fabrics.jpg'
 import fan from '@/public/images/fan.jpg'
 import gadgets from '@/public/images/gadgets.jpg'
@@ -83,7 +84,12 @@ export type HomeContent = {
     readonly eyebrow: string
     readonly heading: string
     readonly note: string
-    readonly products: readonly { readonly icon: IconName; readonly name: string }[]
+    readonly products: readonly {
+      readonly icon: IconName
+      readonly name: string
+      readonly image: StaticImageData
+      readonly alt: string
+    }[]
   }
   readonly customization: {
     readonly steps: readonly {
@@ -122,6 +128,15 @@ export type HomeContent = {
     readonly heading: string
     readonly lead: string
     readonly points: readonly IconCard[]
+  }
+  readonly contact: {
+    readonly eyebrow: string
+    readonly heading: string
+    readonly lead: string
+    readonly directHeading: string
+    readonly directLead: string
+    readonly quantities: readonly string[]
+    readonly submitLabel: string
   }
   readonly finalCta: {
     readonly eyebrow: string
@@ -280,14 +295,54 @@ export const homeContent = {
     heading: 'A sample of what moves most.',
     note: 'Every item shown can be branded and packaged to your specification.',
     products: [
-      { icon: 'desk-set', name: 'Executive desk set' },
-      { icon: 'flask', name: 'Vacuum flask' },
-      { icon: 'pen-set', name: 'Metal pen set' },
-      { icon: 'watch', name: 'Smart watch' },
-      { icon: 'earbuds', name: 'Wireless earbuds' },
-      { icon: 'speaker', name: 'Bluetooth speaker' },
-      { icon: 'power-bank', name: 'Power bank' },
-      { icon: 'fan', name: 'Rechargeable hand fan' },
+      {
+        icon: 'desk-set',
+        name: 'Executive desk set',
+        image: desk,
+        alt: 'Branded executive desk set laid out on a wooden office desk',
+      },
+      {
+        icon: 'flask',
+        name: 'Vacuum flask',
+        image: waterBottle,
+        alt: 'Stainless steel vacuum flask ready for logo printing',
+      },
+      {
+        icon: 'pen-set',
+        name: 'Metal pen set',
+        image: pens,
+        alt: 'Metal pens arranged in a presentation gift box',
+      },
+      {
+        icon: 'watch',
+        name: 'Smart watch',
+        image: watch,
+        alt: 'Smart watch supplied as a corporate gift item',
+      },
+      {
+        icon: 'earbuds',
+        name: 'Wireless earbuds',
+        image: airpods,
+        alt: 'Wireless earbuds in their charging case',
+      },
+      {
+        icon: 'speaker',
+        name: 'Bluetooth speaker',
+        image: gadgets,
+        alt: 'Portable Bluetooth speaker among promotional gadgets',
+      },
+      {
+        icon: 'power-bank',
+        name: 'Power bank',
+        image: powerBank,
+        alt: 'Portable power bank prepared for corporate branding',
+      },
+      {
+        icon: 'fan',
+        name: 'Rechargeable hand fan',
+        image: fan,
+        alt: 'Rechargeable handheld fan supplied in bulk',
+      },
     ],
   },
   customization: {
@@ -463,6 +518,21 @@ export const homeContent = {
         body: 'Scheduled against your event or programme date, nationwide.',
       },
     ],
+  },
+  contact: {
+    eyebrow: 'Get in touch',
+    heading: 'Tell us what you need to source.',
+    lead: 'Share the product, the quantity, the branding you want on it and the date you need it by. We come back with a quotation, samples where they help, and a delivery schedule you can plan around.',
+    directHeading: 'Reach us directly',
+    directLead: 'Prefer to talk it through first? We answer enquiries within one working day.',
+    quantities: [
+      'Under 100 units',
+      '100 - 500 units',
+      '500 - 2,000 units',
+      '2,000 - 10,000 units',
+      'More than 10,000 units',
+    ],
+    submitLabel: 'Send your enquiry',
   },
   finalCta: {
     eyebrow: 'Get in touch',

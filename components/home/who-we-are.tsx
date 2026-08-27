@@ -31,21 +31,21 @@ export function WhoWeAre() {
               />
             </div>
 
-            <div className="grid grid-cols-5 gap-5">
-              <div className="col-span-2 flex flex-col justify-between rounded-3xl bg-sky-500 p-6 text-white">
-                <BadgeCheck aria-hidden="true" className="size-8" />
-                <div className="mt-8">
-                  <dd className="font-display text-4xl font-extrabold">{rangeStat.value}</dd>
+            <div className="grid gap-5 sm:grid-cols-5">
+              <div className="flex items-center gap-5 rounded-3xl bg-sky-500 p-6 text-white sm:col-span-2 sm:flex-col sm:items-start sm:justify-between sm:gap-8">
+                <BadgeCheck aria-hidden="true" className="size-8 shrink-0" />
+                <dl className="flex flex-col-reverse">
                   <dt className="mt-2 text-sm text-white/85">{rangeStat.label}</dt>
-                </div>
+                  <dd className="font-display text-4xl font-extrabold">{rangeStat.value}</dd>
+                </dl>
               </div>
 
-              <div className="relative col-span-3 aspect-3/2 overflow-hidden rounded-3xl">
+              <div className="relative aspect-3/2 overflow-hidden rounded-3xl sm:col-span-3">
                 <Image
                   src={secondaryImage.image}
                   alt={secondaryImage.alt}
                   fill
-                  sizes="(min-width: 1024px) 27vw, 55vw"
+                  sizes="(min-width: 1024px) 27vw, (min-width: 640px) 55vw, 92vw"
                   quality={90}
                   className="object-cover"
                 />
@@ -55,17 +55,14 @@ export function WhoWeAre() {
 
           <div>
             <p className="eyebrow text-ink/50">{whoWeAre.eyebrow}</p>
-            <h2
-              id="about-heading"
-              className="font-display text-ink mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
-            >
+            <h2 id="about-heading" className="section-heading mt-4">
               Simpler for <span className="text-sky-500">corporate</span> and{' '}
               <span className="text-sky-500">institutional</span> buyers.
             </h2>
 
             <div className="mt-6 space-y-4">
               {whoWeAre.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-slate-body leading-relaxed text-pretty">
+                <p key={paragraph} className="section-lead">
                   {paragraph}
                 </p>
               ))}
@@ -77,20 +74,20 @@ export function WhoWeAre() {
                 <ArrowRight aria-hidden="true" className="size-4" />
               </a>
 
-              <dl className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 <span
                   aria-hidden="true"
                   className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-sky-50 text-sky-600"
                 >
                   <BadgeCheck className="size-5" />
                 </span>
-                <div>
+                <dl className="flex flex-col-reverse">
+                  <dt className="text-slate-body text-sm">Registered in Dhaka</dt>
                   <dd className="font-display text-ink text-base font-bold">
                     {foundingStat.label} {foundingStat.value}
                   </dd>
-                  <dt className="text-slate-body text-sm">Registered in Dhaka</dt>
-                </div>
-              </dl>
+                </dl>
+              </div>
             </div>
 
             <div className="mt-10">
