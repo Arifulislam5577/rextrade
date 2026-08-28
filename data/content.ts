@@ -2,6 +2,12 @@ import type { StaticImageData } from 'next/image'
 
 import type { IconName } from '@/lib/icons'
 
+import reasonOne from '@/public/images/1.jpg'
+import reasonTwo from '@/public/images/2.jpg'
+import reasonThree from '@/public/images/3.jpg'
+import reasonFour from '@/public/images/4.jpg'
+import reasonFive from '@/public/images/5.jpg'
+import reasonSix from '@/public/images/6.jpg'
 import aboutPrimary from '@/public/images/about-us-1.png'
 import aboutSecondary from '@/public/images/about-us-2.png'
 import airpods from '@/public/images/airpods.jpg'
@@ -127,7 +133,7 @@ export type HomeContent = {
     readonly eyebrow: string
     readonly heading: string
     readonly lead: string
-    readonly points: readonly IconCard[]
+    readonly points: readonly (IconCard & { readonly image: StaticImageData })[]
   }
   readonly contact: {
     readonly eyebrow: string
@@ -489,31 +495,37 @@ export const homeContent = {
       {
         icon: 'boxes',
         title: 'Wide product range',
+        image: reasonOne,
         body: 'Nine categories under one supplier — fewer vendors to manage per order.',
       },
       {
         icon: 'sliders',
         title: 'Customized sourcing',
+        image: reasonTwo,
         body: 'We source to your specification instead of pushing a fixed catalogue.',
       },
       {
         icon: 'pricing',
         title: 'Competitive pricing',
+        image: reasonThree,
         body: 'Direct import and supplier relationships keep bulk pricing workable.',
       },
       {
         icon: 'warehouse',
         title: 'Bulk & institutional capacity',
+        image: reasonFour,
         body: 'Built for large-volume orders, not one-off retail purchases.',
       },
       {
         icon: 'shield',
         title: 'Quality-focused procurement',
+        image: reasonFive,
         body: 'Specification and finish verified before the order leaves us.',
       },
       {
         icon: 'delivery',
         title: 'Timely, organised delivery',
+        image: reasonSix,
         body: 'Scheduled against your event or programme date, nationwide.',
       },
     ],

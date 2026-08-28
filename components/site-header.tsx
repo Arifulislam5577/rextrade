@@ -7,6 +7,8 @@ import { useState } from 'react'
 import { siteConfig } from '@/lib/site-config'
 import { cn } from '@/lib/utils/cn'
 
+import { MobileMenu } from '@/components/mobile-menu'
+
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -29,7 +31,7 @@ export function SiteHeader() {
             >
               R
             </span>
-            <span className="flex flex-col leading-tight">
+            <span className="sr-only lg:not-sr-only lg:flex lg:flex-col lg:leading-tight">
               <span className="font-display text-ink text-sm font-medium tracking-tight">
                 ReXTrade
               </span>
@@ -62,7 +64,7 @@ export function SiteHeader() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             className={cn(
-              'inline-flex size-11 items-center justify-center rounded-xl border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 lg:hidden',
+              'inline-flex size-11 items-center justify-center rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 lg:hidden',
               isMenuOpen
                 ? 'border-sky-300 bg-sky-50 text-sky-700'
                 : 'border-hairline text-ink bg-white',
@@ -75,33 +77,10 @@ export function SiteHeader() {
               <Menu aria-hidden="true" className="size-5" />
             )}
           </button>
-
-          <div
-            id="mobile-navigation"
-            hidden={!isMenuOpen}
-            className="border-hairline absolute inset-x-0 top-full mt-2 rounded-2xl border bg-white shadow-lg shadow-sky-100 lg:hidden"
-          >
-            <nav aria-label="Mobile" className="px-4 py-4">
-              <ul className="flex flex-col">
-                {siteConfig.navigation.map((entry) => (
-                  <li key={entry.href}>
-                    <a
-                      href={entry.href}
-                      onClick={handleMenuClose}
-                      className="border-hairline font-display text-ink block border-b py-4 text-lg font-semibold transition-colors hover:text-sky-700"
-                    >
-                      {entry.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <a href="#contact" onClick={handleMenuClose} className="button-primary mt-6 w-full">
-                Request a quote
-              </a>
-            </nav>
-          </div>
         </div>
       </div>
+
+      <MobileMenu isOpen={isMenuOpen} onClose={handleMenuClose} />
     </header>
   )
 }
