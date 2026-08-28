@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from 'next/font/google'
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import { siteConfig } from '@/lib/site-config'
@@ -57,12 +58,13 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
       className={`${bricolageGrotesque.variable} ${instrumentSans.variable} ${jetBrainsMono.variable}`}
     >
       <body>
-        <a
+        <Link
           href="#main"
+          scroll={false}
           className="focus:bg-ink sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
         >
           Skip to content
-        </a>
+        </Link>
         <SmoothScroll />
         <SiteHeader />
         {children}

@@ -1,4 +1,5 @@
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import Link from 'next/link'
 
 import { siteConfig } from '@/lib/site-config'
 
@@ -34,7 +35,7 @@ export function ContactSection() {
 
             <ul className="mt-6 space-y-4">
               <li>
-                <a
+                <Link
                   href={channels.emailHref}
                   className="text-ink group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-700"
                 >
@@ -45,10 +46,10 @@ export function ContactSection() {
                     <Mail className="size-4" />
                   </span>
                   {channels.emailLabel}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href={channels.phoneHref}
                   className="text-ink group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-700"
                 >
@@ -59,10 +60,10 @@ export function ContactSection() {
                     <Phone className="size-4" />
                   </span>
                   {channels.phoneLabel}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href={channels.whatsappHref}
                   target="_blank"
                   rel="noreferrer"
@@ -75,7 +76,7 @@ export function ContactSection() {
                     <MessageCircle className="size-4" />
                   </span>
                   WhatsApp
-                </a>
+                </Link>
               </li>
               <li className="text-slate-body flex items-center gap-3 text-sm">
                 <span

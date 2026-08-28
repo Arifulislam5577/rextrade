@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { cn } from '@/lib/utils/cn'
 
@@ -42,13 +43,13 @@ export function Hero() {
         </p>
 
         <div className="mx-auto mt-9 flex max-w-70 flex-col flex-wrap justify-center gap-3 md:max-w-full md:flex-row md:items-center">
-          <a href={hero.primaryCta.href} className="button-primary">
+          <Link href={hero.primaryCta.href} scroll={false} className="button-primary">
             {hero.primaryCta.label}
             <ArrowRight aria-hidden="true" className="size-4" />
-          </a>
-          <a href={hero.secondaryCta.href} className="button-secondary">
+          </Link>
+          <Link href={hero.secondaryCta.href} scroll={false} className="button-secondary">
             {hero.secondaryCta.label}
-          </a>
+          </Link>
         </div>
 
         <ul className="-mt-12 hidden items-end gap-5 lg:flex">

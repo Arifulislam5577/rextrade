@@ -43,20 +43,21 @@ export function SiteHeader() {
             <ul className="flex items-center gap-8">
               {siteConfig.navigation.map((entry) => (
                 <li key={entry.href}>
-                  <a
+                  <Link
                     href={entry.href}
+                    scroll={false}
                     className="text-slate-body text-sm font-medium transition-colors hover:text-sky-700"
                   >
                     {entry.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <a href="#contact" className="button-primary hidden lg:inline-flex">
+          <Link href="#contact" scroll={false} className="button-primary hidden lg:inline-flex">
             Request a quote
-          </a>
+          </Link>
 
           <button
             type="button"

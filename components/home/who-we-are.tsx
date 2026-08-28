@@ -1,5 +1,6 @@
 import { ArrowRight, BadgeCheck } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { homeContent } from '@/data/content'
 
@@ -69,10 +70,10 @@ export function WhoWeAre() {
             </div>
 
             <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-5">
-              <a href={whoWeAre.cta.href} className="button-primary">
+              <Link href={whoWeAre.cta.href} scroll={false} className="button-primary">
                 {whoWeAre.cta.label}
                 <ArrowRight aria-hidden="true" className="size-4" />
-              </a>
+              </Link>
 
               <div className="flex items-center gap-3">
                 <span

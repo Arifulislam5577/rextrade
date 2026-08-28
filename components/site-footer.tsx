@@ -38,12 +38,13 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3">
               {siteConfig.navigation.map((entry) => (
                 <li key={entry.href}>
-                  <a
+                  <Link
                     href={entry.href}
+                    scroll={false}
                     className="text-sm text-white/70 transition-colors hover:text-sky-300"
                   >
                     {entry.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -56,12 +57,13 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3">
               {categories.map((category) => (
                 <li key={category.title}>
-                  <a
+                  <Link
                     href="#products"
+                    scroll={false}
                     className="text-sm text-white/70 transition-colors hover:text-sky-300"
                   >
                     {category.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -71,18 +73,18 @@ export function SiteFooter() {
             <h2 className="eyebrow text-white/50">Contact</h2>
             <address className="mt-5 space-y-3 not-italic">
               <p className="text-sm leading-relaxed text-white/70">{siteConfig.contact.address}</p>
-              <a
+              <Link
                 href={siteConfig.contact.phoneHref}
                 className="block text-sm text-white/70 transition-colors hover:text-sky-300"
               >
                 {siteConfig.contact.phoneLabel}
-              </a>
-              <a
+              </Link>
+              <Link
                 href={siteConfig.contact.emailHref}
                 className="block text-sm break-all text-white/70 transition-colors hover:text-sky-300"
               >
                 {siteConfig.contact.emailLabel}
-              </a>
+              </Link>
             </address>
           </div>
         </div>

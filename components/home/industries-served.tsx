@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 import { iconRegistry } from '@/lib/icons'
 
@@ -48,13 +49,14 @@ export function IndustriesServed() {
               {industries.invitation.body}
             </p>
           </div>
-          <a
+          <Link
             href={industries.invitation.cta.href}
+            scroll={false}
             className="button-primary shrink-0 self-start lg:self-auto"
           >
             {industries.invitation.cta.label}
             <ArrowRight aria-hidden="true" className="size-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

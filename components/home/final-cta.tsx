@@ -1,4 +1,5 @@
 import { ArrowRight, MessageCircle } from 'lucide-react'
+import Link from 'next/link'
 
 import { siteConfig } from '@/lib/site-config'
 
@@ -38,11 +39,11 @@ export function FinalCta() {
             </p>
 
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <a href={contact.emailHref} className="button-primary min-w-60 whitespace-nowrap">
+              <Link href={contact.emailHref} className="button-primary min-w-60 whitespace-nowrap">
                 {finalCta.primaryCtaLabel}
                 <ArrowRight aria-hidden="true" className="size-4" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href={contact.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
@@ -50,7 +51,7 @@ export function FinalCta() {
               >
                 <MessageCircle aria-hidden="true" className="size-4" />
                 {finalCta.secondaryCtaLabel}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

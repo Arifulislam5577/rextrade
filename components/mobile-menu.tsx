@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowRight, Mail, Phone } from 'lucide-react'
+import Link from 'next/link'
 import type { MouseEvent } from 'react'
 import { useEffect, useRef } from 'react'
 
@@ -115,40 +116,46 @@ export function MobileMenu({
           <ul className="divide-hairline/70 divide-y">
             {siteConfig.navigation.map((entry) => (
               <li key={entry.href}>
-                <a
+                <Link
                   href={entry.href}
+                  scroll={false}
                   onClick={handleLinkClick}
                   className="font-display text-ink flex items-center justify-between py-4 text-lg font-bold transition-colors hover:text-sky-600"
                 >
                   {entry.label}
                   <ArrowRight aria-hidden="true" className="text-hairline size-4" />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
-          <a href="#contact" onClick={handleLinkClick} className="button-primary mt-6 w-full">
+          <Link
+            href="#contact"
+            scroll={false}
+            onClick={handleLinkClick}
+            className="button-primary mt-6 w-full"
+          >
             Request a quote
             <ArrowRight aria-hidden="true" className="size-4" />
-          </a>
+          </Link>
 
           <div className="mt-6 flex flex-col gap-3">
-            <a
+            <Link
               href={siteConfig.contact.phoneHref}
               onClick={handleLinkClick}
               className="text-slate-body flex items-center gap-3 text-sm transition-colors hover:text-sky-700"
             >
               <Phone aria-hidden="true" className="size-4 text-sky-500" />
               {siteConfig.contact.phoneLabel}
-            </a>
-            <a
+            </Link>
+            <Link
               href={siteConfig.contact.emailHref}
               onClick={handleLinkClick}
               className="text-slate-body flex items-center gap-3 text-sm break-all transition-colors hover:text-sky-700"
             >
               <Mail aria-hidden="true" className="size-4 text-sky-500" />
               {siteConfig.contact.emailLabel}
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
