@@ -2,7 +2,6 @@
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowRight } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 
 import { iconRegistry } from '@/lib/icons'
@@ -19,13 +18,14 @@ const COMPLETE_DURATION = 0.35
 const TAIL_DURATION = 0.9
 const PIN_SCROLL_PERCENT = 180
 const SCRUB_SMOOTHING = 0.8
+const CARD_REVEAL_OFFSET = 30
 const STROKE_COVER_PX = 8
 const PATH_SAMPLE_COUNT = 240
 
 const stepAnchors = [
   { left: '18%', top: '73%', isTextAbove: true },
   { left: '50%', top: '27%', isTextAbove: false },
-  { left: '82.5%', top: '54%', isTextAbove: false },
+  { left: '82.5%', top: '54%', isTextAbove: true },
 ] as const
 
 type TrustStripCards = HomeContent['trustStrip']['cards']
@@ -66,6 +66,15 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
         const scopeName = isDesktop ? 'desktop' : 'mobile'
         const icons = htmlElements(root, scopeName, 'step-marker')
         const indexes = htmlElements(root, scopeName, 'step-index')
+        const stepCards = htmlElements(root, scopeName, 'step-card')
+
+        function revealOffset(position: number) {
+          if (!isDesktop) {
+            return CARD_REVEAL_OFFSET
+          }
+
+          return stepAnchors[position]?.isTextAbove ? -CARD_REVEAL_OFFSET : CARD_REVEAL_OFFSET
+        }
         const sky500 = readThemeColor('--color-sky-500', '#00aaff')
         const hairline = readThemeColor('--color-hairline', '#dde5f0')
         const idleShadow = isDesktop
@@ -80,6 +89,9 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
             scale: 1,
           })
           gsap.set(indexes, { color: hairline })
+          stepCards.forEach((stepCard, position) => {
+            gsap.set(stepCard, { y: revealOffset(position) })
+          })
         }
 
         function paintComplete() {
@@ -90,6 +102,7 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
             scale: 1,
           })
           gsap.set(indexes, { color: sky500 })
+          gsap.set(stepCards, { y: 0 })
         }
 
         if (reduceMotion) {
@@ -178,7 +191,7 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
               return
             }
 
-            timeline.add(completeStep(icon, stepIndex, sky500))
+            timeline.add(completeStep(icon, stepIndex, stepCards[index], sky500))
           })
 
           timeline.to(progress, {
@@ -194,7 +207,10 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
               return
             }
 
-            timeline.add(completeStep(icon, stepIndex, sky500), index === 0 ? 0 : '+=0.5')
+            timeline.add(
+              completeStep(icon, stepIndex, stepCards[index], sky500),
+              index === 0 ? 0 : '+=0.5',
+            )
           })
         }
 
@@ -229,7 +245,16 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
               >
                 <Icon aria-hidden="true" className="size-5" />
               </span>
-              <StepCopy card={card} index={index} indexClassName="text-6xl" />
+              <div
+                data-step-card=""
+                className="border-hairline/60 relative rounded-3xl border bg-white p-5"
+              >
+                <span
+                  aria-hidden="true"
+                  className="border-hairline/60 absolute top-6 -left-1.5 size-2.5 rotate-45 border-b border-l bg-white"
+                />
+                <StepCopy card={card} index={index} indexClassName="text-5xl" />
+              </div>
             </li>
           )
         })}
@@ -290,12 +315,22 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
                 </span>
 
                 <div
+                  data-step-card=""
                   className={cn(
-                    'absolute left-1/2 w-72 -translate-x-1/2',
+                    'border-hairline/60 absolute left-1/2 w-72 -translate-x-1/2 rounded-3xl border bg-white p-7',
                     anchor.isTextAbove ? 'bottom-full mb-10' : 'top-full mt-10',
                   )}
                 >
-                  <StepCopy card={card} index={index} indexClassName="text-8xl" />
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'border-hairline/60 absolute left-1/2 size-4.5 -translate-x-1/2 rotate-45 bg-white',
+                      anchor.isTextAbove
+                        ? 'bottom-0 translate-y-1/2 border-r border-b'
+                        : 'top-0 -translate-y-1/2 border-t border-l',
+                    )}
+                  />
+                  <StepCopy card={card} index={index} indexClassName="text-5xl" />
                 </div>
               </li>
             )
@@ -328,20 +363,18 @@ function StepCopy({
         {String(index + 1).padStart(2, '0')}
       </span>
       <h3 className="font-display text-ink text-xl font-bold">{card.title}</h3>
-      <p className="text-slate-body mt-3 text-sm leading-relaxed">{card.body}</p>
-      <a
-        href={card.cta.href}
-        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 transition-colors hover:text-sky-500"
-      >
-        {card.cta.label}
-        <ArrowRight aria-hidden="true" className="size-4" />
-      </a>
+      <p className="text-slate-body mt-2 text-sm leading-relaxed">{card.body}</p>
     </>
   )
 }
 
-function completeStep(icon: HTMLElement, stepIndex: HTMLElement, sky500: string) {
-  return gsap
+function completeStep(
+  icon: HTMLElement,
+  stepIndex: HTMLElement,
+  stepCard: HTMLElement | undefined,
+  sky500: string,
+) {
+  const timeline = gsap
     .timeline()
     .to(icon, {
       backgroundColor: sky500,
@@ -362,6 +395,12 @@ function completeStep(icon: HTMLElement, stepIndex: HTMLElement, sky500: string)
       '<',
     )
     .to(stepIndex, { color: sky500, duration: COMPLETE_DURATION, ease: 'power2.out' }, '<')
+
+  if (stepCard) {
+    timeline.to(stepCard, { y: 0, duration: COMPLETE_DURATION, ease: 'power2.out' }, '<')
+  }
+
+  return timeline
 }
 
 function applyPathProgress(path: SVGPathElement, measure: PathMeasure, progress: number) {
