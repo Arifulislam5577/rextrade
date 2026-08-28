@@ -92,6 +92,11 @@
   @apply text-alert-500 mt-2 text-xs font-medium;
 }
 
+@utility text-vertical {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+}
+
 @utility button-primary {
   @apply inline-flex items-center justify-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500;
 }

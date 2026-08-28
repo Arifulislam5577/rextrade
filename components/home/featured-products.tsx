@@ -26,14 +26,12 @@ export function FeaturedProducts() {
       className="bg-linear-to-b from-sky-50 to-white py-20 lg:py-28"
     >
       <div className="main-container">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="eyebrow text-ink/50">{featured.eyebrow}</p>
-            <h2 id="featured-heading" className="section-heading mt-4">
-              {featured.heading}
-            </h2>
-          </div>
-          <p className="section-lead max-w-sm lg:text-right">{featured.note}</p>
+        <div className="text-center">
+          <p className="eyebrow text-ink/50 text-center">{featured.eyebrow}</p>
+          <h2 id="featured-heading" className="section-heading mx-auto mt-4 max-w-3xl text-center">
+            A sample of what <span className="text-sky-500">moves</span> most.
+          </h2>
+          <p className="section-lead mx-auto mt-3 max-w-xl text-center">{featured.note}</p>
         </div>
 
         <ul className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">

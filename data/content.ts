@@ -17,6 +17,7 @@ import office from '@/public/images/office.jpg'
 import pens from '@/public/images/pens.jpg'
 import powerBank from '@/public/images/power-bank.jpg'
 import promotional from '@/public/images/promotional.jpg'
+import speaker from '@/public/images/speaker.jpg'
 import watch from '@/public/images/watch.jpg'
 import waterBottle from '@/public/images/water-bottle.jpg'
 import woodenProduct from '@/public/images/wooden-product.jpg'
@@ -110,7 +111,6 @@ export type HomeContent = {
     readonly heading: string
     readonly lead: string
     readonly steps: readonly NumberedStep[]
-    readonly chain: readonly string[]
   }
   readonly industries: {
     readonly eyebrow: string
@@ -293,13 +293,13 @@ export const homeContent = {
   featured: {
     eyebrow: 'Recently supplied',
     heading: 'A sample of what moves most.',
-    note: 'Every item shown can be branded and packaged to your specification.',
+    note: 'Every item shown here is available for full customization, including your company logo, colors, and packaging style.',
     products: [
       {
-        icon: 'desk-set',
-        name: 'Executive desk set',
-        image: desk,
-        alt: 'Branded executive desk set laid out on a wooden office desk',
+        icon: 'watch',
+        name: 'Smart watch',
+        image: watch,
+        alt: 'Smart watch supplied as a corporate gift item',
       },
       {
         icon: 'flask',
@@ -314,10 +314,10 @@ export const homeContent = {
         alt: 'Metal pens arranged in a presentation gift box',
       },
       {
-        icon: 'watch',
-        name: 'Smart watch',
-        image: watch,
-        alt: 'Smart watch supplied as a corporate gift item',
+        icon: 'desk-set',
+        name: 'Executive desk set',
+        image: desk,
+        alt: 'Branded executive desk set laid out on a wooden office desk',
       },
       {
         icon: 'earbuds',
@@ -328,7 +328,7 @@ export const homeContent = {
       {
         icon: 'speaker',
         name: 'Bluetooth speaker',
-        image: gadgets,
+        image: speaker,
         alt: 'Portable Bluetooth speaker among promotional gadgets',
       },
       {
@@ -433,7 +433,6 @@ export const homeContent = {
         body: 'Organised delivery on schedule, with a single point of contact throughout.',
       },
     ],
-    chain: ['Requirement', 'Sourcing', 'Customization', 'Verification', 'Import', 'Delivery'],
   },
   industries: {
     eyebrow: 'Industries served',

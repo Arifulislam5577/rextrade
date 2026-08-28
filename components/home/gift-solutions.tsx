@@ -12,9 +12,9 @@ export function GiftSolutions() {
       <div className="main-container">
         <p className="eyebrow text-ink/50">{giftSolutions.eyebrow}</p>
         <h2 id="solutions-heading" className="section-heading mt-4 max-w-3xl">
-          {giftSolutions.heading}
+          Built around the reason you are <span className="text-sky-500">buying</span>
         </h2>
-        <p className="section-lead mt-5 max-w-3xl">{giftSolutions.lead}</p>
+        <p className="section-lead mt-3 max-w-3xl">{giftSolutions.lead}</p>
 
         <ol className="divide-hairline border-hairline mt-12 divide-y border-y">
           {giftSolutions.solutions.map((solution, index) => (
@@ -24,9 +24,9 @@ export function GiftSolutions() {
             >
               <span
                 aria-hidden="true"
-                className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-sky-50 font-mono text-sm font-medium text-sky-600"
+                className="font-display text-hairline block text-5xl leading-none font-extrabold sm:w-24 sm:shrink-0"
               >
-                {index + 1}
+                {String(index + 1).padStart(2, '0')}
               </span>
               <h3 className="font-display text-ink text-lg font-bold sm:w-74 sm:shrink-0">
                 {solution.title}
