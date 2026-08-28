@@ -22,7 +22,7 @@ export function WhyChooseUs() {
           id="why-choose-us-heading"
           className="section-heading mx-auto mt-4 max-w-3xl text-center"
         >
-          {whyChooseUs.heading}
+          What you actually get by <span className="text-sky-500">working</span> with us.
         </h2>
         <p className="section-lead mx-auto mt-3 max-w-3xl text-center">{whyChooseUs.lead}</p>
 
@@ -34,7 +34,7 @@ export function WhyChooseUs() {
               <li
                 key={point.title}
                 className={cn(
-                  'relative h-72 overflow-hidden rounded-3xl lg:h-80',
+                  'group relative h-72 overflow-hidden rounded-3xl lg:h-80',
                   spanClasses[index],
                 )}
               >
@@ -44,11 +44,12 @@ export function WhyChooseUs() {
                   fill
                   sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 92vw"
                   quality={90}
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110 motion-reduce:transition-none"
                 />
+                <span aria-hidden="true" className="bg-ink/40 absolute inset-0" />
                 <span
                   aria-hidden="true"
-                  className="from-ink/95 via-ink/45 absolute inset-0 bg-linear-to-t to-transparent"
+                  className="from-ink/95 via-ink/50 absolute inset-0 bg-linear-to-t to-transparent"
                 />
 
                 <div className="absolute inset-x-0 bottom-0 p-6">

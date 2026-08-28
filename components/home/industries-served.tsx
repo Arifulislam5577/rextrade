@@ -17,7 +17,7 @@ export function IndustriesServed() {
       <div className="main-container">
         <p className="eyebrow text-ink/50">{industries.eyebrow}</p>
         <h2 id="industries-heading" className="section-heading mt-4">
-          {industries.heading}
+          Who we <span className="text-sky-500">supply.</span>
         </h2>
         <p className="section-lead mt-5 max-w-3xl">{industries.lead}</p>
 
