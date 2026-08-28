@@ -12,18 +12,24 @@ import aboutPrimary from '@/public/images/about-us-1.png'
 import aboutSecondary from '@/public/images/about-us-2.png'
 import airpods from '@/public/images/airpods.jpg'
 import customizeGift from '@/public/images/customize-gift.jpg'
+import stepCustomization from '@/public/images/cutomization.jpg'
+import stepDelivery from '@/public/images/delivery.jpg'
 import desk from '@/public/images/desk.jpg'
 import fabrics from '@/public/images/fabrics.jpg'
 import fan from '@/public/images/fan.jpg'
 import gadgets from '@/public/images/gadgets.jpg'
 import houseware from '@/public/images/houseware.jpg'
+import stepImport from '@/public/images/import.jpg'
 import kitchen from '@/public/images/kitchen.jpg'
 import leather from '@/public/images/lether.jpg'
 import office from '@/public/images/office.jpg'
 import pens from '@/public/images/pens.jpg'
 import powerBank from '@/public/images/power-bank.jpg'
 import promotional from '@/public/images/promotional.jpg'
+import stepRequirement from '@/public/images/requirement.jpg'
+import stepSourcing from '@/public/images/sourcing.jpg'
 import speaker from '@/public/images/speaker.jpg'
+import stepVerification from '@/public/images/verification.jpg'
 import watch from '@/public/images/watch.jpg'
 import waterBottle from '@/public/images/water-bottle.jpg'
 import woodenProduct from '@/public/images/wooden-product.jpg'
@@ -45,6 +51,7 @@ type NumberedStep = {
   readonly icon: IconName
   readonly title: string
   readonly body: string
+  readonly image: StaticImageData
 }
 
 export type HeroImageRatio = '4/5' | '7/5' | '6/5' | '3/2' | '3/4' | '2/3' | '9/10' | '16/9'
@@ -406,36 +413,42 @@ export const homeContent = {
         number: '01',
         icon: 'clipboard',
         title: 'Requirement & product selection',
+        image: stepRequirement,
         body: 'We take your brief — product type, quantity, budget, deadline — and shortlist what actually fits.',
       },
       {
         number: '02',
         icon: 'search',
         title: 'Sourcing & procurement',
+        image: stepSourcing,
         body: 'Products are sourced from vetted suppliers against the specification you approve.',
       },
       {
         number: '03',
         icon: 'palette',
         title: 'Product customization',
+        image: stepCustomization,
         body: 'Logo printing, engraving, embossing, custom packaging and gift-set assembly.',
       },
       {
         number: '04',
         icon: 'shield',
         title: 'Quality & order verification',
+        image: stepVerification,
         body: 'Specification, quantity and finish are checked against the order before anything ships.',
       },
       {
         number: '05',
         icon: 'ship',
         title: 'Import & supply management',
+        image: stepImport,
         body: 'We handle procurement and import-related processes for bulk and institutional orders.',
       },
       {
         number: '06',
         icon: 'delivery',
         title: 'Delivery & client support',
+        image: stepDelivery,
         body: 'Organised delivery on schedule, with a single point of contact throughout.',
       },
     ],

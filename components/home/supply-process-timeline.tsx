@@ -2,6 +2,7 @@
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
 import { cn } from '@/lib/utils/cn'
@@ -12,6 +13,8 @@ const CARD_OFFSET = 100
 const DOT_DURATION = 0.06
 const CARD_DURATION = 0.12
 const SCRUB_SMOOTHING = 0.8
+const SKY_500_FALLBACK = '#00aaff'
+const HAIRLINE_FALLBACK = '#dde5f0'
 
 type SupplySteps = HomeContent['supplyProcess']['steps']
 
@@ -37,6 +40,8 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
         return
       }
 
+      const activeColor = readThemeColor('--color-sky-500', SKY_500_FALLBACK)
+      const inactiveColor = readThemeColor('--color-hairline', HAIRLINE_FALLBACK)
       const rootTop = root.getBoundingClientRect().top + window.scrollY
       const rootHeight = root.offsetHeight
 
@@ -58,13 +63,12 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
 
       entries.forEach((entry) => {
         if (entry.dot) {
-          gsap.set(entry.dot, { scale: 0 })
+          gsap.set(entry.dot, { backgroundColor: inactiveColor })
         }
 
         if (entry.card) {
           gsap.set(entry.card, {
             x: entry.isRightSide ? CARD_OFFSET : -CARD_OFFSET,
-            autoAlpha: 0,
           })
         }
       })
@@ -86,7 +90,12 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
         if (entry.dot) {
           timeline.to(
             entry.dot,
-            { scale: 1, duration: DOT_DURATION, ease: 'back.out(2)' },
+            {
+              backgroundColor: activeColor,
+              scale: 1.35,
+              duration: DOT_DURATION,
+              ease: 'back.out(2)',
+            },
             entry.fraction,
           )
         }
@@ -94,7 +103,7 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
         if (entry.card) {
           timeline.to(
             entry.card,
-            { x: 0, autoAlpha: 1, duration: CARD_DURATION, ease: 'power2.out' },
+            { x: 0, duration: CARD_DURATION, ease: 'power2.out' },
             entry.fraction,
           )
         }
@@ -137,8 +146,8 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
             <article
               data-timeline-card=""
               className={cn(
-                'border-hairline/50 relative flex rounded-3xl border bg-white/50 lg:max-w-lg',
-                isRightSide ? 'lg:col-start-2' : 'lg:col-start-1 lg:ml-auto lg:flex-row-reverse',
+                'border-hairline/50 relative flex flex-col rounded-3xl border bg-white/50 lg:max-w-full',
+                isRightSide ? 'lg:col-start-2' : 'lg:col-start-1 lg:ml-auto',
               )}
             >
               <span
@@ -151,23 +160,33 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
                 )}
               />
 
-              <div
-                className={cn(
-                  'border-hairline/50 flex w-24 shrink-0 items-center justify-center border-r',
-                  isRightSide ? '' : 'lg:border-r-0 lg:border-l',
-                )}
-              >
-                <span className="font-display text-hairline text-5xl leading-none font-extrabold">
-                  {step.number}
-                </span>
-              </div>
+              <div className={cn('flex', isRightSide ? '' : 'lg:flex-row-reverse')}>
+                <div
+                  className={cn(
+                    'border-hairline/50 flex w-24 shrink-0 items-center justify-center border-r',
+                    isRightSide ? '' : 'lg:border-r-0 lg:border-l',
+                  )}
+                >
+                  <span className="font-display text-hairline text-5xl leading-none font-extrabold">
+                    {step.number}
+                  </span>
+                </div>
 
-              <div className="p-6">
-                <div>
+                <div className="p-6">
                   <h3 className="font-display text-ink text-base font-bold lg:whitespace-nowrap">
                     {step.title}
                   </h3>
                   <p className="text-slate-body mt-1 text-sm leading-relaxed">{step.body}</p>
+                  <div className="relative mt-3 h-55 w-full overflow-hidden rounded-xl">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      sizes="(min-width: 1024px) 512px, 92vw"
+                      quality={90}
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </article>
@@ -176,4 +195,14 @@ export function SupplyProcessTimeline({ steps }: { readonly steps: SupplySteps }
       })}
     </ol>
   )
+}
+
+function readThemeColor(variableName: string, fallback: string) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim()
+
+  if (value.length === 0) {
+    return fallback
+  }
+
+  return value
 }
