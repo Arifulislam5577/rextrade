@@ -61,7 +61,7 @@ export function FeaturedProducts() {
                   className="from-ink/90 via-ink/25 absolute inset-0 bg-linear-to-t to-transparent"
                 />
 
-                <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-4 lg:p-5">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-2.5 p-4 md:flex-row md:items-center md:gap-3 lg:p-5">
                   <span
                     aria-hidden="true"
                     className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/15 text-white backdrop-blur-sm"

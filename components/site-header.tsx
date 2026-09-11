@@ -48,7 +48,7 @@ export function SiteHeader() {
       )}
     >
       <div className="main-container">
-        <div className="border-hairline/50 relative flex h-15 items-center justify-between gap-6 rounded-full border bg-white px-3 lg:h-17 lg:px-4">
+        <div className="border-hairline/50 relative flex h-15 items-center justify-between gap-6 rounded-full border bg-white px-2.5 lg:h-17 lg:px-4">
           <Link href="/" className="flex items-center gap-3" onClick={handleMenuClose}>
             <span
               aria-hidden="true"
@@ -93,7 +93,7 @@ export function SiteHeader() {
                 'inline-flex size-11 items-center justify-center rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 lg:hidden',
                 isMenuOpen
                   ? 'border-sky-300 bg-sky-50 text-sky-700'
-                  : 'border-hairline text-ink bg-white',
+                  : 'border-hairline/50 text-ink bg-white',
               )}
             >
               <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>

@@ -124,7 +124,7 @@ export function MobileMenu({
                   href={entry.href}
                   scroll={!isSamePageHash(entry.href, pathname)}
                   onClick={handleLinkClick}
-                  className="font-display text-ink flex items-center justify-between py-4 text-lg font-bold transition-colors hover:text-sky-600"
+                  className="text-ink flex items-center justify-between py-4 text-base font-normal transition-colors hover:text-sky-600"
                 >
                   {entry.label}
                   <ArrowRight aria-hidden="true" className="text-hairline size-4" />
