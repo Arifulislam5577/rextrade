@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: 'B2B importer & supplier · Dhaka',
   description:
     'B2B importer and supplier of corporate, promotional and institutional products in Bangladesh — gadgets, stationery, leather, wooden, kitchen and houseware goods, customised to your specification.',
-  url: 'https://rextradeinternational.com',
+  url: 'https://rextrade-international.vercel.app',
   foundedYear: '2022',
   contact: {
     address: 'Dhaka North City Corporation, Dhaka, Bangladesh',
