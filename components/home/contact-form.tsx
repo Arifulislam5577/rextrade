@@ -1,34 +1,61 @@
 'use client'
 
-import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react'
+import { ArrowRight, CheckCircle2, ChevronDown, Loader2, TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 
-import { buildEnquiryMailto } from '@/lib/enquiry/build-enquiry-mailto'
 import type { EnquiryErrors } from '@/lib/validations/enquiry'
 import { parseEnquiry } from '@/lib/validations/enquiry'
 
 import { homeContent } from '@/data/content'
 
+import type { ApiResponse } from '@/types/api'
+
+type SubmitState = 'idle' | 'sending' | 'sent' | 'failed'
+
+const GENERIC_FAILURE = 'We could not send your enquiry. Please email us directly.'
+
 export function ContactForm() {
   const { contact, productCategories } = homeContent
   const [errors, setErrors] = useState<EnquiryErrors>({})
-  const [isSent, setIsSent] = useState(false)
+  const [submitState, setSubmitState] = useState<SubmitState>('idle')
+  const [failureMessage, setFailureMessage] = useState(GENERIC_FAILURE)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    const result = parseEnquiry(new FormData(event.currentTarget))
+    const form = event.currentTarget
+    const result = parseEnquiry(new FormData(form))
 
     if (!result.ok) {
-      setIsSent(false)
+      setSubmitState('idle')
       setErrors(result.errors)
       return
     }
 
     setErrors({})
-    setIsSent(true)
-    window.location.href = buildEnquiryMailto(result.data)
+    setSubmitState('sending')
+
+    try {
+      const response = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(result.data),
+      })
+      const payload: ApiResponse<{ received: boolean }> = await response.json()
+
+      if (!payload.ok) {
+        setFailureMessage(payload.error.message)
+        setSubmitState('failed')
+        return
+      }
+
+      form.reset()
+      setSubmitState('sent')
+    } catch {
+      setFailureMessage(GENERIC_FAILURE)
+      setSubmitState('failed')
+    }
   }
 
   return (
@@ -202,23 +229,56 @@ export function ContactForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <button type="submit" className="button-primary w-full py-3.5">
-          {contact.submitLabel}
-          <ArrowRight aria-hidden="true" className="size-4" />
+        <button
+          type="submit"
+          disabled={submitState === 'sending'}
+          className="button-primary w-full py-3.5 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {submitState === 'sending' ? 'Sending…' : contact.submitLabel}
+          {submitState === 'sending' ? (
+            <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+          ) : (
+            <ArrowRight aria-hidden="true" className="size-4" />
+          )}
         </button>
 
         <p aria-live="polite" className="text-slate-body mt-4 text-xs leading-relaxed">
-          {isSent ? (
-            <span className="text-ink inline-flex items-center gap-2 font-medium">
-              <CheckCircle2 aria-hidden="true" className="size-4 shrink-0 text-sky-500" />
-              Your enquiry is ready in your mail app. Send it and we will reply within one working
-              day.
-            </span>
-          ) : (
-            'Your details go straight to our sourcing desk. We never share them with suppliers without your say-so.'
-          )}
+          <FormStatus state={submitState} failureMessage={failureMessage} />
         </p>
       </div>
     </form>
+  )
+}
+
+function FormStatus({
+  state,
+  failureMessage,
+}: {
+  readonly state: SubmitState
+  readonly failureMessage: string
+}) {
+  if (state === 'sent') {
+    return (
+      <span className="text-ink inline-flex items-center gap-2 font-medium">
+        <CheckCircle2 aria-hidden="true" className="size-4 shrink-0 text-sky-500" />
+        Enquiry sent. We will reply within one working day.
+      </span>
+    )
+  }
+
+  if (state === 'failed') {
+    return (
+      <span className="text-alert-500 inline-flex items-center gap-2 font-medium">
+        <TriangleAlert aria-hidden="true" className="size-4 shrink-0" />
+        {failureMessage}
+      </span>
+    )
+  }
+
+  return (
+    <>
+      Your details go straight to our sourcing desk. We never share them with suppliers without your
+      say-so.
+    </>
   )
 }

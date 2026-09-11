@@ -10,6 +10,8 @@ import { siteConfig } from '@/lib/site-config'
 import { cn } from '@/lib/utils/cn'
 
 import { MobileMenu } from '@/components/mobile-menu'
+import logo from '@/public/logo.png'
+import Image from 'next/image'
 
 const SCROLL_THRESHOLD = 24
 
@@ -48,19 +50,9 @@ export function SiteHeader() {
       )}
     >
       <div className="main-container">
-        <div className="border-hairline/50 relative flex h-15 items-center justify-between gap-6 rounded-full border bg-white px-2.5 lg:h-17 lg:px-4">
-          <Link href="/" className="flex items-center gap-3" onClick={handleMenuClose}>
-            <span
-              aria-hidden="true"
-              className="font-display inline-flex size-9 items-center justify-center rounded-full bg-sky-500 text-base font-extrabold text-white"
-            >
-              R
-            </span>
-            <span className="sr-only lg:not-sr-only lg:flex lg:flex-col lg:leading-tight">
-              <span className="font-display text-ink text-xl font-medium tracking-tight">
-                ReXTrade
-              </span>
-            </span>
+        <div className="relative flex h-15 items-center justify-between gap-6 rounded-full px-2.5 lg:h-17 lg:px-4">
+          <Link href="/" className="w-full max-w-36" onClick={handleMenuClose}>
+            <Image src={logo} alt="Logo" className="h-full w-full object-cover" />
           </Link>
 
           <div className="flex items-center gap-6 lg:gap-8">
