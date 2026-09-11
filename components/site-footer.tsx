@@ -1,8 +1,11 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { siteConfig } from '@/lib/site-config'
 
 import { homeContent } from '@/data/content'
+
+import logo from '@/public/logo.png'
 
 const CATEGORY_LINK_COUNT = 5
 
@@ -15,16 +18,11 @@ export function SiteFooter() {
       <div className="main-container py-16">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Link href="/" className="flex items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="font-display inline-flex size-9 items-center justify-center rounded-xl bg-sky-500 text-base font-extrabold text-white"
-              >
-                R
-              </span>
-              <span className="font-display text-lg font-extrabold tracking-tight text-white">
-                {siteConfig.name}
-              </span>
+            <Link
+              href="/"
+              className="inline-flex"
+            >
+              <Image src={logo} alt={siteConfig.name} priority={false} className="h-auto w-40 invert-100" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
               {siteConfig.description}

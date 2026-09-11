@@ -1,6 +1,7 @@
 'use client'
 
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -10,10 +11,10 @@ import { siteConfig } from '@/lib/site-config'
 import { cn } from '@/lib/utils/cn'
 
 import { MobileMenu } from '@/components/mobile-menu'
-import logo from '@/public/logo.png'
-import Image from 'next/image'
 
-const SCROLL_THRESHOLD = 24
+import logo from '@/public/logo.png'
+
+const SCROLL_THRESHOLD = 600
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -45,13 +46,13 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 z-40 transition-[top] duration-300 ease-out motion-reduce:transition-none',
-        isScrolled ? 'top-2.5' : 'top-4 lg:top-6',
+        'fixed inset-x-0 top-0 z-40 w-full transition-colors duration-300 ease-out motion-reduce:transition-none',
+        isScrolled ? ' bg-white' : 'bg-transparent',
       )}
     >
       <div className="main-container">
-        <div className="relative flex h-15 items-center justify-between gap-6 rounded-full px-2.5 lg:h-17 lg:px-4">
-          <Link href="/" className="w-full max-w-36" onClick={handleMenuClose}>
+        <div className="relative flex h-15 items-center justify-between gap-6 lg:h-20">
+          <Link href="/" className="w-full max-w-32" onClick={handleMenuClose}>
             <Image src={logo} alt="Logo" className="h-full w-full object-cover" />
           </Link>
 

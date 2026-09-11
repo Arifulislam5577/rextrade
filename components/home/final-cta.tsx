@@ -32,7 +32,7 @@ export function FinalCta() {
               id="get-started-heading"
               className="font-display mt-4 text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl lg:text-5xl"
             >
-              Send us your <span className="text-sky-500">requirement.</span>
+              Send us your requirement.
             </h2>
             <p className="mt-3 text-base leading-relaxed text-pretty text-white/70">
               {finalCta.lead}
