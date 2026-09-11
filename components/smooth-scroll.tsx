@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { useEffect } from 'react'
 
-const ANCHOR_OFFSET = -120
 const MILLISECONDS_PER_SECOND = 1000
 const DEFAULT_LAG_THRESHOLD = 500
 const DEFAULT_LAG_ADJUSTED_LAG = 33
@@ -15,7 +14,7 @@ export function SmoothScroll() {
     gsap.registerPlugin(ScrollTrigger)
 
     const lenis = new Lenis({
-      anchors: { offset: ANCHOR_OFFSET },
+      anchors: true,
       stopInertiaOnNavigate: true,
     })
 

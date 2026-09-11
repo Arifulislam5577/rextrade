@@ -29,7 +29,7 @@ export function SupplyProcess() {
     <section
       id="process"
       aria-labelledby="process-heading"
-      className="bg-linear-to-b from-sky-50 to-white py-20 lg:py-28"
+      className="scroll-mt-8 bg-linear-to-b from-sky-50 to-white py-20 lg:py-28"
     >
       <div className="main-container">
         <p className="eyebrow text-ink/50 text-center">{supplyProcess.eyebrow}</p>
@@ -56,14 +56,14 @@ export function SupplyProcess() {
                   className="from-ink/90 via-ink/35 absolute inset-0 bg-linear-to-t to-transparent"
                 />
 
-                <div className="relative flex h-full flex-col justify-between gap-6 p-6">
-                  <div>
-                    <p className="eyebrow text-white/70">Step {step.number}</p>
-                    <h3 className="font-display mt-2 text-xl font-bold text-balance text-white">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm leading-relaxed text-pretty text-white/80">{step.body}</p>
+                <div className="relative flex h-full flex-col justify-end p-6">
+                  <p className="eyebrow text-white/70">Step {step.number}</p>
+                  <h3 className="font-display mt-2 text-xl font-bold text-balance text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-pretty text-white/80">
+                    {step.body}
+                  </p>
                 </div>
               </article>
             </li>

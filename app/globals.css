@@ -35,8 +35,9 @@
     @apply font-body text-ink bg-white text-base antialiased;
   }
 
-  section[id] {
-    scroll-margin-top: --spacing(30);
+  section[id],
+  main[id] {
+    scroll-margin-top: --spacing(22);
   }
 
   ::selection {
@@ -90,6 +91,10 @@
 
 @utility field-error {
   @apply text-alert-500 mt-2 text-xs font-medium;
+}
+
+@utility decor-orb {
+  @apply pointer-events-none absolute rounded-full;
 }
 
 @utility text-vertical {

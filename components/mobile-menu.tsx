@@ -2,9 +2,11 @@
 
 import { ArrowRight, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import type { MouseEvent } from 'react'
 import { useEffect, useRef } from 'react'
 
+import { isSamePageHash } from '@/lib/navigation/is-same-page-hash'
 import { siteConfig } from '@/lib/site-config'
 import { cn } from '@/lib/utils/cn'
 
@@ -17,16 +19,18 @@ export function MobileMenu({
   readonly isOpen: boolean
   readonly onClose: () => void
 }) {
+  const pathname = usePathname()
   const sheetRef = useRef<HTMLDivElement>(null)
   const pendingHrefRef = useRef<string | null>(null)
 
   function handleLinkClick(event: MouseEvent<HTMLAnchorElement>) {
-    const href = event.currentTarget.getAttribute('href')
+    const target = new URL(event.currentTarget.href)
+    const isSamePageHash = target.hash !== '' && target.pathname === window.location.pathname
 
-    if (href?.startsWith('#')) {
+    if (isSamePageHash) {
       event.preventDefault()
       event.stopPropagation()
-      pendingHrefRef.current = href
+      pendingHrefRef.current = target.hash
     }
 
     onClose()
@@ -118,7 +122,7 @@ export function MobileMenu({
               <li key={entry.href}>
                 <Link
                   href={entry.href}
-                  scroll={false}
+                  scroll={!isSamePageHash(entry.href, pathname)}
                   onClick={handleLinkClick}
                   className="font-display text-ink flex items-center justify-between py-4 text-lg font-bold transition-colors hover:text-sky-600"
                 >
@@ -129,12 +133,7 @@ export function MobileMenu({
             ))}
           </ul>
 
-          <Link
-            href="#contact"
-            scroll={false}
-            onClick={handleLinkClick}
-            className="button-primary mt-6 w-full"
-          >
+          <Link href="/contact" onClick={handleLinkClick} className="button-primary mt-6 w-full">
             Request a quote
             <ArrowRight aria-hidden="true" className="size-4" />
           </Link>

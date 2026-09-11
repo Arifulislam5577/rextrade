@@ -7,7 +7,7 @@ export function GiftSolutions() {
     <section
       id="solutions"
       aria-labelledby="solutions-heading"
-      className="bg-linear-to-b from-white to-sky-50 py-20 lg:py-28"
+      className="scroll-mt-8 bg-linear-to-b from-white to-sky-50 py-20 lg:py-28"
     >
       <div className="main-container">
         <p className="eyebrow text-ink/50">{giftSolutions.eyebrow}</p>

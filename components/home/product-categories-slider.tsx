@@ -18,6 +18,10 @@ const MOVE_DURATION = 1.6
 const START_DELAY = 0.9
 const PAUSE_DURATION = 1.4
 const VISIBLE_DEPTH = 2
+const DRAG_THRESHOLD_PX = 4
+const DRAG_PROJECTION_MS = 140
+const MAX_SNAP_DURATION = 0.55
+const MIN_SNAP_DURATION = 0.3
 
 type ProductCategories = HomeContent['productCategories']['categories']
 
@@ -48,6 +52,7 @@ export function ProductCategoriesSlider({
     }
 
     const referenceTile: HTMLLIElement = firstTile
+    const listElement: HTMLUListElement = listEl
 
     gsap.registerPlugin(CustomEase)
     CustomEase.create('depth', 'M0,0 C0.6,0 0,1 1,1')
@@ -56,6 +61,14 @@ export function ProductCategoriesSlider({
     const state = { progress: 0 }
 
     let isHovering = false
+    let isSettling = false
+    let isDragging = false
+    let activePointerId: number | null = null
+    let dragStartX = 0
+    let dragStartProgress = 0
+    let lastDragX = 0
+    let lastDragTime = 0
+    let dragVelocity = 0
     let stepTimeline: gsap.core.Timeline | null = null
     let pendingCall: gsap.core.Tween | null = null
 
@@ -109,6 +122,30 @@ export function ProductCategoriesSlider({
       pendingCall = gsap.delayedCall(PAUSE_DURATION, () => goBy(1, false))
     }
 
+    function animateBy(delta: number, duration: number, isSnap: boolean) {
+      stepTimeline?.kill()
+      isSettling = isSnap
+
+      stepTimeline = gsap.timeline({
+        onComplete: () => {
+          stepTimeline = null
+          isSettling = false
+          setActiveIndex(getActiveIndex())
+          scheduleNext()
+        },
+      })
+
+      stepTimeline.to(state, {
+        progress: state.progress + delta,
+        duration,
+        ease: isSnap ? 'power3.out' : 'depth',
+        onUpdate: () => {
+          renderDepth()
+          setActiveIndex(getActiveIndex())
+        },
+      })
+    }
+
     function goBy(delta: number, fromUser: boolean) {
       if (!delta) {
         return
@@ -120,29 +157,107 @@ export function ProductCategoriesSlider({
         return
       }
 
-      stepTimeline?.kill()
-
       const duration = prefersReducedMotion
         ? 0
         : MOVE_DURATION * Math.min(1.2, 0.82 + 0.18 * Math.abs(delta))
 
-      stepTimeline = gsap.timeline({
-        onComplete: () => {
-          stepTimeline = null
-          setActiveIndex(getActiveIndex())
-          scheduleNext()
-        },
-      })
+      animateBy(delta, duration, false)
+    }
 
-      stepTimeline.to(state, {
-        progress: state.progress + delta,
-        duration,
-        ease: 'depth',
-        onUpdate: () => {
-          renderDepth()
-          setActiveIndex(getActiveIndex())
-        },
-      })
+    function getDragUnit() {
+      return (
+        Math.sin((1 / VISIBLE_DEPTH) * (Math.PI / 2)) * referenceTile.offsetWidth * X_MULTIPLIER
+      )
+    }
+
+    function settleFromDrag() {
+      const projected = state.progress - (dragVelocity * DRAG_PROJECTION_MS) / getDragUnit()
+      const delta = Math.round(projected) - state.progress
+
+      if (Math.abs(delta) < 0.001) {
+        setActiveIndex(getActiveIndex())
+        scheduleNext()
+        return
+      }
+
+      const duration = prefersReducedMotion
+        ? 0
+        : gsap.utils.clamp(
+            MIN_SNAP_DURATION,
+            MAX_SNAP_DURATION,
+            Math.abs(delta) * MAX_SNAP_DURATION,
+          )
+
+      animateBy(delta, duration, true)
+    }
+
+    function handlePointerDown(event: PointerEvent) {
+      if (event.pointerType === 'mouse' && event.button !== 0) {
+        return
+      }
+
+      activePointerId = event.pointerId
+      isDragging = false
+      dragStartX = event.clientX
+      dragStartProgress = state.progress
+      lastDragX = event.clientX
+      lastDragTime = event.timeStamp
+      dragVelocity = 0
+
+      stopAuto()
+      stepTimeline?.kill()
+      stepTimeline = null
+      isSettling = false
+    }
+
+    function handlePointerMove(event: PointerEvent) {
+      if (activePointerId !== event.pointerId) {
+        return
+      }
+
+      const distance = event.clientX - dragStartX
+
+      if (!isDragging) {
+        if (Math.abs(distance) < DRAG_THRESHOLD_PX) {
+          return
+        }
+
+        isDragging = true
+        listElement.setPointerCapture(event.pointerId)
+      }
+
+      const elapsed = event.timeStamp - lastDragTime
+
+      if (elapsed > 0) {
+        dragVelocity = (event.clientX - lastDragX) / elapsed
+        lastDragX = event.clientX
+        lastDragTime = event.timeStamp
+      }
+
+      state.progress = dragStartProgress - distance / getDragUnit()
+      renderDepth()
+      setActiveIndex(getActiveIndex())
+    }
+
+    function handlePointerUp(event: PointerEvent) {
+      if (activePointerId !== event.pointerId) {
+        return
+      }
+
+      activePointerId = null
+
+      if (!isDragging) {
+        scheduleNext()
+        return
+      }
+
+      isDragging = false
+
+      if (listElement.hasPointerCapture(event.pointerId)) {
+        listElement.releasePointerCapture(event.pointerId)
+      }
+
+      settleFromDrag()
     }
 
     goToIndexRef.current = (target) => {
@@ -165,17 +280,24 @@ export function ProductCategoriesSlider({
     }
 
     function handlePointerOver(event: PointerEvent) {
-      if (!(event.target instanceof Element) || !event.target.closest('li')) {
+      if (isDragging || !(event.target instanceof Element) || !event.target.closest('li')) {
         return
       }
 
       isHovering = true
       stopAuto()
-      stepTimeline?.pause()
+
+      if (!isSettling) {
+        stepTimeline?.pause()
+      }
     }
 
     function handlePointerLeave() {
       isHovering = false
+
+      if (isDragging || isSettling) {
+        return
+      }
 
       if (stepTimeline && stepTimeline.progress() < 1) {
         stepTimeline.play()
@@ -187,6 +309,10 @@ export function ProductCategoriesSlider({
 
     listEl.addEventListener('pointerover', handlePointerOver)
     listEl.addEventListener('pointerleave', handlePointerLeave)
+    listEl.addEventListener('pointerdown', handlePointerDown)
+    listEl.addEventListener('pointermove', handlePointerMove)
+    listEl.addEventListener('pointerup', handlePointerUp)
+    listEl.addEventListener('pointercancel', handlePointerUp)
     window.addEventListener('resize', renderDepth)
 
     renderDepth()
@@ -201,6 +327,10 @@ export function ProductCategoriesSlider({
       goToIndexRef.current = null
       listEl.removeEventListener('pointerover', handlePointerOver)
       listEl.removeEventListener('pointerleave', handlePointerLeave)
+      listEl.removeEventListener('pointerdown', handlePointerDown)
+      listEl.removeEventListener('pointermove', handlePointerMove)
+      listEl.removeEventListener('pointerup', handlePointerUp)
+      listEl.removeEventListener('pointercancel', handlePointerUp)
       window.removeEventListener('resize', renderDepth)
     }
   }, [])
@@ -211,7 +341,10 @@ export function ProductCategoriesSlider({
 
   return (
     <div aria-label="Product categories" className="mt-14 overflow-hidden">
-      <ul ref={listRef} className="grid place-items-center">
+      <ul
+        ref={listRef}
+        className="grid cursor-grab touch-pan-y place-items-center select-none active:cursor-grabbing"
+      >
         {categories.map((category, index) => {
           const Icon = iconRegistry[category.icon]
 
@@ -225,6 +358,7 @@ export function ProductCategoriesSlider({
                   src={category.image}
                   alt=""
                   fill
+                  draggable={false}
                   sizes="(min-width: 1024px) 384px, (min-width: 640px) 320px, 288px"
                   quality={90}
                   className="object-cover"
@@ -263,7 +397,7 @@ export function ProductCategoriesSlider({
             aria-label={`Show ${category.title}`}
             aria-current={index === activeIndex}
             className={cn(
-              'h-2 rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
+              'h-2 cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
               index === activeIndex ? 'w-7 bg-sky-500' : 'bg-slate-body/30 w-2',
             )}
           />

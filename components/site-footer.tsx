@@ -47,6 +47,14 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm text-white/70 transition-colors hover:text-sky-300"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -58,7 +66,7 @@ export function SiteFooter() {
               {categories.map((category) => (
                 <li key={category.title}>
                   <Link
-                    href="#products"
+                    href="/#products"
                     scroll={false}
                     className="text-sm text-white/70 transition-colors hover:text-sky-300"
                   >

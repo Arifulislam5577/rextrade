@@ -13,7 +13,7 @@ export function FinalCta() {
     <section
       id="get-started"
       aria-labelledby="get-started-heading"
-      className="bg-linear-to-b from-sky-50 to-white py-20 lg:py-28"
+      className="bg-linear-to-b from-white to-sky-50 py-20 lg:py-28"
     >
       <div className="main-container">
         <div className="bg-ink relative overflow-hidden rounded-4xl px-6 py-16 lg:px-16 lg:py-20">

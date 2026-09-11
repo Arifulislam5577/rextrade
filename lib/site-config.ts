@@ -15,10 +15,10 @@ export const siteConfig = {
     whatsappHref: 'https://wa.me/8801700000000',
   },
   navigation: [
-    { label: 'About', href: '#about' },
-    { label: 'Products', href: '#products' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'Process', href: '#process' },
-    { label: 'Industries', href: '#industries' },
+    { label: 'About', href: '/#about' },
+    { label: 'Products', href: '/#products' },
+    { label: 'Solutions', href: '/#solutions' },
+    { label: 'Process', href: '/#process' },
+    { label: 'Industries', href: '/#industries' },
   ],
 } as const

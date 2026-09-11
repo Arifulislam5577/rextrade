@@ -1,15 +1,10 @@
-import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
-import Link from 'next/link'
-
-import { siteConfig } from '@/lib/site-config'
-
 import { homeContent } from '@/data/content'
 
+import { ContactChannels } from '@/components/contact-channels'
 import { ContactForm } from '@/components/home/contact-form'
 
 export function ContactSection() {
   const { contact } = homeContent
-  const channels = siteConfig.contact
 
   return (
     <section
@@ -33,61 +28,7 @@ export function ContactSection() {
             </h3>
             <p className="text-slate-body mt-2 text-sm leading-relaxed">{contact.directLead}</p>
 
-            <ul className="mt-6 space-y-4">
-              <li>
-                <Link
-                  href={channels.emailHref}
-                  className="text-ink group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-700"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="border-hairline inline-flex size-10 shrink-0 items-center justify-center rounded-xl border bg-white text-sky-600 transition-colors group-hover:border-sky-300"
-                  >
-                    <Mail className="size-4" />
-                  </span>
-                  {channels.emailLabel}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={channels.phoneHref}
-                  className="text-ink group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-700"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="border-hairline inline-flex size-10 shrink-0 items-center justify-center rounded-xl border bg-white text-sky-600 transition-colors group-hover:border-sky-300"
-                  >
-                    <Phone className="size-4" />
-                  </span>
-                  {channels.phoneLabel}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={channels.whatsappHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-ink group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-700"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="border-hairline inline-flex size-10 shrink-0 items-center justify-center rounded-xl border bg-white text-sky-600 transition-colors group-hover:border-sky-300"
-                  >
-                    <MessageCircle className="size-4" />
-                  </span>
-                  WhatsApp
-                </Link>
-              </li>
-              <li className="text-slate-body flex items-center gap-3 text-sm">
-                <span
-                  aria-hidden="true"
-                  className="border-hairline inline-flex size-10 shrink-0 items-center justify-center rounded-xl border bg-white text-sky-600"
-                >
-                  <MapPin className="size-4" />
-                </span>
-                {channels.address}
-              </li>
-            </ul>
+            <ContactChannels className="mt-6" />
           </div>
 
           <div className="border-hairline rounded-4xl border bg-white p-3">

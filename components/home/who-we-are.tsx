@@ -33,9 +33,14 @@ export function WhoWeAre() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-5">
-              <div className="flex items-center gap-5 rounded-3xl bg-sky-500 p-6 text-white sm:col-span-2 sm:flex-col sm:items-start sm:justify-between sm:gap-8">
-                <BadgeCheck aria-hidden="true" className="size-8 shrink-0" />
-                <dl className="flex flex-col-reverse">
+              <div className="relative flex items-center gap-5 overflow-hidden rounded-3xl bg-sky-500 p-6 text-white sm:col-span-2 sm:flex-col sm:items-start sm:justify-between sm:gap-8">
+                <span
+                  aria-hidden="true"
+                  className="decor-orb -right-12 -bottom-16 size-44 bg-white/10"
+                />
+
+                <BadgeCheck aria-hidden="true" className="relative size-8 shrink-0" />
+                <dl className="relative flex flex-col-reverse">
                   <dt className="mt-2 text-sm text-white/85">{rangeStat.label}</dt>
                   <dd className="font-display text-4xl font-extrabold">{rangeStat.value}</dd>
                 </dl>
@@ -92,9 +97,16 @@ export function WhoWeAre() {
             </div>
 
             <div className="mt-10">
-              <div className="bg-mist rounded-3xl p-6">
-                <h3 className="font-display text-ink text-base font-bold">What we supply</h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
+              <div className="bg-mist relative overflow-hidden rounded-3xl p-6">
+                <span
+                  aria-hidden="true"
+                  className="decor-orb -right-16 -bottom-20 size-52 bg-sky-100"
+                />
+
+                <h3 className="font-display text-ink relative text-base font-bold">
+                  What we supply
+                </h3>
+                <ul className="relative mt-4 flex flex-wrap gap-2">
                   {pills.map((category) => (
                     <li
                       key={category.title}

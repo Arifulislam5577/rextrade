@@ -249,7 +249,7 @@ export function HeroSlider() {
             aria-label={`Show ${slide.alt}`}
             aria-current={index === activeIndex}
             className={cn(
-              'h-2 rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
+              'h-2 cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
               index === activeIndex ? 'w-7 bg-sky-500' : 'bg-slate-body/30 w-2',
             )}
           />

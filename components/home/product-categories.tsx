@@ -9,7 +9,7 @@ export function ProductCategories() {
     <section
       id="products"
       aria-labelledby="products-heading"
-      className="bg-linear-to-b from-white to-sky-50 py-20 lg:py-28"
+      className="scroll-mt-8 bg-linear-to-b from-white to-sky-50 py-20 lg:py-28"
     >
       <div className="main-container">
         <p className="eyebrow text-ink/50 text-center">{productCategories.eyebrow}</p>

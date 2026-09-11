@@ -253,7 +253,13 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
                   aria-hidden="true"
                   className="border-hairline/60 absolute top-6 -left-1.5 size-2.5 rotate-45 border-b border-l bg-white"
                 />
-                <StepCopy card={card} index={index} indexClassName="text-5xl" />
+                <span aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-3xl">
+                  <span className="decor-orb -right-10 -bottom-14 size-36 bg-sky-50" />
+                </span>
+
+                <div className="relative">
+                  <StepCopy card={card} index={index} indexClassName="text-5xl" />
+                </div>
               </div>
             </li>
           )
@@ -330,7 +336,13 @@ export function TrustStripJourney({ cards }: { readonly cards: TrustStripCards }
                         : 'top-0 -translate-y-1/2 border-t border-l',
                     )}
                   />
-                  <StepCopy card={card} index={index} indexClassName="text-5xl" />
+                  <span aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-3xl">
+                    <span className="decor-orb -right-10 -bottom-14 size-36 bg-sky-50" />
+                  </span>
+
+                  <div className="relative">
+                    <StepCopy card={card} index={index} indexClassName="text-5xl" />
+                  </div>
                 </div>
               </li>
             )
