@@ -14,7 +14,7 @@ import { MobileMenu } from '@/components/mobile-menu'
 
 import logo from '@/public/logo.png'
 
-const SCROLL_THRESHOLD = 600
+const SCROLL_THRESHOLD = 400
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -47,7 +47,7 @@ export function SiteHeader() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-40 w-full transition-colors duration-300 ease-out motion-reduce:transition-none',
-        isScrolled ? ' bg-white' : 'bg-transparent',
+        isScrolled ? 'bg-white' : 'bg-transparent',
       )}
     >
       <div className="main-container">

@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/site-config'
 
 import { homeContent } from '@/data/content'
 
-import logo from '@/public/logo.png'
+import logo from '@/public/footer-logo.png'
 
 const CATEGORY_LINK_COUNT = 5
 
@@ -18,13 +18,10 @@ export function SiteFooter() {
       <div className="main-container py-16">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Link
-              href="/"
-              className="inline-flex"
-            >
-              <Image src={logo} alt={siteConfig.name} priority={false} className="h-auto w-40 invert-100" />
+            <Link href="/" className="inline-flex">
+              <Image src={logo} alt={siteConfig.name} priority={false} className="h-auto w-40" />
             </Link>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/60">
               {siteConfig.description}
             </p>
           </div>

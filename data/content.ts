@@ -105,14 +105,6 @@ export type HomeContent = {
       readonly alt: string
     }[]
   }
-  readonly customization: {
-    readonly steps: readonly {
-      readonly number: string
-      readonly title: string
-      readonly note: string
-    }[]
-    readonly closing: string
-  }
   readonly giftSolutions: {
     readonly eyebrow: string
     readonly heading: string
@@ -357,15 +349,6 @@ export const homeContent = {
         alt: 'Rechargeable handheld fan supplied in bulk',
       },
     ],
-  },
-  customization: {
-    steps: [
-      { number: '01', title: 'Your requirement', note: 'Product, quantity, budget, deadline' },
-      { number: '02', title: 'Our sourcing', note: 'Suppliers, samples, branding, checks' },
-      { number: '03', title: 'Your customised product', note: 'Boxed, branded, delivered' },
-    ],
-    closing:
-      'Logo printing, laser engraving, embossing, custom packaging and full gift-set assembly — arranged in-house against your artwork and brand guidelines.',
   },
   giftSolutions: {
     eyebrow: 'Corporate gift solutions',
