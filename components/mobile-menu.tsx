@@ -139,14 +139,17 @@ export function MobileMenu({
           </Link>
 
           <div className="mt-6 flex flex-col gap-3">
-            <Link
-              href={siteConfig.contact.phoneHref}
-              onClick={handleLinkClick}
-              className="text-slate-body flex items-center gap-3 text-sm transition-colors hover:text-sky-700"
-            >
-              <Phone aria-hidden="true" className="size-4 text-sky-500" />
-              {siteConfig.contact.phoneLabel}
-            </Link>
+            {siteConfig.contact.phones.map((phone) => (
+              <Link
+                key={phone.href}
+                href={phone.href}
+                onClick={handleLinkClick}
+                className="text-slate-body flex items-center gap-3 text-sm transition-colors hover:text-sky-700"
+              >
+                <Phone aria-hidden="true" className="size-4 text-sky-500" />
+                {phone.label}
+              </Link>
+            ))}
             <Link
               href={siteConfig.contact.emailHref}
               onClick={handleLinkClick}

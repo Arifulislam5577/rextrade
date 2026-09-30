@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import { siteConfig } from '@/lib/site-config'
+
 import { contactPageContent } from '@/data/contact-page'
 import { homeContent } from '@/data/content'
 
@@ -50,6 +52,13 @@ export default function ContactPage() {
                   </p>
 
                   <ContactChannels tone="on-brand" className="mt-10" />
+
+                  <p className="mt-10 border-t border-white/20 pt-6 text-sm text-white/80">
+                    <span className="font-display block text-base font-bold text-white">
+                      {siteConfig.leadership.name}
+                    </span>
+                    {siteConfig.leadership.role}, {siteConfig.name}
+                  </p>
                 </div>
               </div>
 

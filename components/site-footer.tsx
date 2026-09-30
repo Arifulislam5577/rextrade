@@ -76,12 +76,15 @@ export function SiteFooter() {
             <h2 className="eyebrow text-white/50">Contact</h2>
             <address className="mt-5 space-y-3 not-italic">
               <p className="text-sm leading-relaxed text-white/70">{siteConfig.contact.address}</p>
-              <Link
-                href={siteConfig.contact.phoneHref}
-                className="block text-sm text-white/70 transition-colors hover:text-sky-300"
-              >
-                {siteConfig.contact.phoneLabel}
-              </Link>
+              {siteConfig.contact.phones.map((phone) => (
+                <Link
+                  key={phone.href}
+                  href={phone.href}
+                  className="block text-sm text-white/70 transition-colors hover:text-sky-300"
+                >
+                  {phone.label}
+                </Link>
+              ))}
               <Link
                 href={siteConfig.contact.emailHref}
                 className="block text-sm break-all text-white/70 transition-colors hover:text-sky-300"

@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from 'next/font/
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
+import { buildOrganizationSchema } from '@/lib/seo/build-organization-schema'
 import { siteConfig } from '@/lib/site-config'
 
 import { SiteFooter } from '@/components/site-footer'
@@ -66,6 +67,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
+const organizationSchemaJson = JSON.stringify(buildOrganizationSchema()).replace(/</g, '\\u003c')
+
 export default function RootLayout({ children }: { readonly children: ReactNode }) {
   return (
     <html
@@ -73,6 +76,10 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
       className={`${bricolageGrotesque.variable} ${instrumentSans.variable} ${jetBrainsMono.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: organizationSchemaJson }}
+        />
         <Link
           href="#main"
           scroll={false}

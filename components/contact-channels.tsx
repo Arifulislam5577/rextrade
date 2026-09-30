@@ -43,14 +43,16 @@ export function ContactChannels({
           {channels.emailLabel}
         </Link>
       </li>
-      <li>
-        <Link href={channels.phoneHref} className={cn(linkBaseClasses, classes.link)}>
-          <span aria-hidden="true" className={cn(chipBaseClasses, classes.chip)}>
-            <Phone className="size-4" />
-          </span>
-          {channels.phoneLabel}
-        </Link>
-      </li>
+      {channels.phones.map((phone) => (
+        <li key={phone.href}>
+          <Link href={phone.href} className={cn(linkBaseClasses, classes.link)}>
+            <span aria-hidden="true" className={cn(chipBaseClasses, classes.chip)}>
+              <Phone className="size-4" />
+            </span>
+            {phone.label}
+          </Link>
+        </li>
+      ))}
       <li>
         <Link
           href={channels.whatsappHref}
